@@ -1,0 +1,46 @@
+{% extends 'bills/base.html' %}
+{% load static %}
+
+{% block title %}
+  Заказ не найден
+{% endblock %}
+
+{% block link %}
+      <link rel="stylesheet" href="{% static 'bills/bill_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col justify-content-center">
+        <h3 class="text-black-50" align="center">Подробности заказа з/части</h3>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row pt-3">
+      <div class="col"></div>
+      <div class="d-flex col-sm-6 justify-content-center">
+        <button type="button" class="btn btn-primary";" disabled>Предыдущий заказ</button>
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
+        <button type="button" class="btn btn-primary";" disabled>Следующий заказ</button>
+      </div>
+      <div class="col"></div>
+    </div>
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col"></div>
+        <div class="d-flex col justify-content-center">
+          <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ pk }}';">Вернуться</button>
+        </div>
+      <div class="d-flex col">
+      </div>
+    </div>
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col justify-content-center">
+        <h3 align="center">Такого заказа нет</h3>
+      </div>
+    </div>
+
+
+{% endblock %}

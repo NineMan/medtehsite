@@ -1,0 +1,91 @@
+{% extends 'bills/base.html' %}
+{% load static %}
+
+{% block title %}
+  Новый заказ
+{% endblock %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'bills/bill_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col justify-content-center">
+        <h3 align="center">Новый заказ запчасти</h3>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col justify-content-center">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/'">На главную</button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row">
+      <div class="d-flex col justify-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="d-flex col justify-content-left pl-5 ml-5 ">
+              <h4>Главное по заказу</h4>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+
+            <form method="post" class="post-form">{% csrf_token %}
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                      <td class="font-weight-bold" width="24%"><label for="id_product">Что заказали:</label></td>
+                      <td><input id="id_product" type="text" name="product" maxlength="100" required></td>
+                  </tr>
+                  <tr>
+                      <td class="font-weight-bold"><label for="id_supplier">Поставщик:</label></td>
+                      <td><input id="id_supplier" type="text" name="supplier" required></td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold"><label for="id_clinic">Больница:</label></td>
+                    <td><input id="id_clinic" type="text" name="clinic" required></td>
+                  </tr>
+                  <tr>
+                      <td class="font-weight-bold"><label for="id_engineer">Техник:</label></td>
+                      <td><input id="id_engineer" type="text" name="engineer" required></td>
+                  </tr>
+                </tbody>
+              </table>
+            <input class="btn btn-primary" type="submit" value="Сохранить">
+            <input class="btn btn-primary" type="reset" value="Сброс">
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex col justify-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="d-flex col justify-content-left pl-5 ml-5">
+              <h4>Информация по счёту</h4>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr><td class="font-weight-bold " width="32%">№ счёта:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Дата счёта:</td><td>
+                      <input id="id_bill_date" type="date" name="bill_date">
+                  </td></tr>
+                  <tr><td class="font-weight-bold">Сумма счёта:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Дата создания заказа:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Кто запросил счёт:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Комментарий:</td><td>Пока нет комментария</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}

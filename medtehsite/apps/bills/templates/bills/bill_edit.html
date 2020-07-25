@@ -1,0 +1,129 @@
+﻿{% extends 'bills/base.html' %}
+{% load static %}
+
+{% block title %}
+  Новый заказ
+{% endblock %}
+
+{% block link %}
+  <link rel="stylesheet" href="{% static 'bills/bill_detail.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col justify-content-center">
+        <h3 align="center">Новый заказ запчасти</h3>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row pt-3">
+      <div class="d-flex col justify-content-center">
+        <button type="button" class="btn btn-primary" onclick="window.location.href='/'">На главную</button>
+      </div>
+    </div>
+
+    <div class="d-flex flex-row">
+      <div class="d-flex col justify-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="d-flex col justify-content-left pl-5 ml-5 ">
+              <h4>Главное по заказу</h4>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+            <form method="post" class="post-form">{% csrf_token %}
+              <table class="table table-borderless">
+                <tbody>
+                  <tr>
+                    <td class="font-weight-bold" width="24%">
+                      Что заказали:
+                    </td>
+                    <td class="pt-1">
+                      {{ form.product }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">
+                      Поставщик:
+                    </td><td class="pt-1">
+                      {{ form.supplier }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">
+                      Больница:
+                    </td><td class="pt-1">
+                      {{ form.clinic }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">
+                      Аппарат:
+                    </td><td class="pt-1">
+                      {{ form.device }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">
+                      Техник:
+                    </td><td class="pt-1">
+                      {{ form.engineer }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">
+                      Статус:
+                    </td><td class="pt-1">
+                      {{ form.supply }}
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="font-weight-bold">
+                      Дата доставки:
+                    </td><td>
+                      {% if bill.supply_date %}
+                        {{ bill.supply_date }}
+                      {% else %}
+                        не доставлено
+                      {% endif %}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'bills:bill_detail' bill.pk %}'">Назад</button>
+            <input class="btn btn-primary" type="submit" value="Сохранить">
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="d-flex col justify-content-center">
+        <div class="container">
+          <div class="row">
+            <div class="d-flex col justify-content-left pl-5 ml-5">
+              <h4>Информация по счёту</h4>
+            </div>
+            <div class="w-100"></div>
+            <div class="col">
+              <table class="table table-borderless">
+                <tbody>
+                  <tr><td class="font-weight-bold " width="32%">№ счёта:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Дата счёта:</td><td>
+                      <input id="id_bill_date" type="date" name="bill_date">
+                  </td></tr>
+                  <tr><td class="font-weight-bold">Сумма счёта:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Дата создания заказа:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Кто запросил счёт:</td><td>__</td></tr>
+                  <tr><td class="font-weight-bold">Комментарий:</td><td>{{ form.comment }}</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+{% endblock %}
+

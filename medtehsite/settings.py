@@ -29,7 +29,7 @@ SECRET_KEY = 'yn3yuv!8ktv714_2^0v#m95j-6lja-v1+ys!hsdh5#_t9+k+3p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     # 'cash',
     # 'bill',
     'bills',
-
 
     'crispy_forms',
 ]

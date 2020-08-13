@@ -50,9 +50,21 @@ def bill_new(request):
     if request.method == 'POST':
         form = BillForm(request.POST)
         if form.is_valid():
+            print('form is valid')
             bill = form.save()
             bill.save()
             return redirect('bills:bill_detail', pk=bill.pk)
+        else:
+            print('form not valid')
+            print('------------')
+            # print(form)
+            print(dir(form))
+            print('------------')
+            print('------------')
+            print(form.data)
+            print(form['product'])
+            print(form['supply'])
+            print('------------')
     else:
         form = BillForm()
 

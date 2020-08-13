@@ -49,9 +49,18 @@
                     <td><input id="id_clinic" type="text" name="clinic" required></td>
                   </tr>
                   <tr>
+                      <td class="font-weight-bold"><label for="id_engineer">Аппарат:</label></td>
+                      <td><input id="id_device" type="text" name="device"></td>
+                  </tr>
+                  <tr>
                       <td class="font-weight-bold"><label for="id_engineer">Техник:</label></td>
                       <td><input id="id_engineer" type="text" name="engineer" required></td>
                   </tr>
+                  <tr>
+                    <td class="font-weight-bold">Статус:</td>
+                    <td class="pt-1">{{ form.supply }}</td>
+                  </tr>
+
                 </tbody>
               </table>
             <input class="btn btn-primary" type="submit" value="Сохранить">

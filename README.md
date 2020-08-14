@@ -1,8 +1,8 @@
 CRM приложение для работы с медоборудованием.
 
 
-Деплой на heroku:
-Первоначально:
+Первоначальный деплой на heroku:
+
     heroku login
     git clone https://github.com/NineMan/medtehsite.git
     cd mdtehsite

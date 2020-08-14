@@ -51,7 +51,7 @@ class Bill(models.Model):
 
     class Meta:
 
-        ordering = ['-pk']
+        ordering = ['pk']
 
         verbose_name = 'Заказ по счёту'
         verbose_name_plural = 'Заказы по счёту'

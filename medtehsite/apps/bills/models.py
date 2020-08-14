@@ -50,6 +50,9 @@ class Bill(models.Model):
         return str(self.pk) + ' ' + str(self.product) + ' для ' + str(self.clinic)
 
     class Meta:
+
+        ordering = ['-pk']
+
         verbose_name = 'Заказ по счёту'
         verbose_name_plural = 'Заказы по счёту'
 

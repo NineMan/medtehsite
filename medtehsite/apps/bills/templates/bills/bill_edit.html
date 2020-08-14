@@ -34,60 +34,32 @@
             <div class="col">
             <form method="post" class="post-form">{% csrf_token %}
               <table class="table table-borderless">
+
                 <tbody>
                   <tr>
-                    <td class="font-weight-bold" width="24%">
-                      Что заказали:
-                    </td>
-                    <td class="pt-1">
-                      {{ form.product }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">
-                      Поставщик:
-                    </td><td class="pt-1">
-                      {{ form.supplier }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">
-                      Больница:
-                    </td><td class="pt-1">
-                      {{ form.clinic }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">
-                      Аппарат:
-                    </td><td class="pt-1">
-                      {{ form.device }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">
-                      Техник:
-                    </td><td class="pt-1">
-                      {{ form.engineer }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">
-                      Статус:
-                    </td><td class="pt-1">
-                      {{ form.supply }}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td class="font-weight-bold">
-                      Дата доставки:
-                    </td><td>
-                      {% if bill.supply_date %}
-                        {{ bill.supply_date }}
-                      {% else %}
-                        не доставлено
-                      {% endif %}
-                    </td>
+                    <td class="font-weight-bold" width="24%">Что заказали:</td>
+                    <td class="pt-1">{{ form.product }}</td>
+                  </tr><tr>
+                    <td class="font-weight-bold">Поставщик:</td>
+                    <td class="pt-1">{{ form.supplier }}</td>
+                  </tr><tr>
+                    <td class="font-weight-bold">Больница:</td>
+                    <td class="pt-1">{{ form.clinic }}</td>
+                  </tr><tr>
+                    <td class="font-weight-bold">Аппарат:</td>
+                    <td class="pt-1">{{ form.device }}</td>
+                  </tr><tr>
+                    <td class="font-weight-bold">Техник:</td>
+                    <td class="pt-1">{{ form.engineer }}</td>
+                  </tr><tr>
+                    <td class="font-weight-bold">Статус:</td>
+                    <td class="pt-1">{{ form.supply }}</td>
+                  </tr><tr>
+                    <td class="font-weight-bold">Дата доставки:</td>
+                    <td>
+                      {% if bill.supply_date %}{{ bill.supply_date }}
+                      {% else %}не доставлено
+                      {% endif %}</td>
                   </tr>
                 </tbody>
               </table>

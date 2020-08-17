@@ -8,4 +8,9 @@ urlpatterns = [
     path('bill/<int:pk>', views.bill_detail, name='bill_detail'),
     path('bill/<int:pk>/edit', views.bill_edit, name='bill_edit'),
     path('bill/new', views.bill_new, name='bill_new'),
+
+
+    path('test/', views.test, name='test'),
+    path('test2/', views.test2, name='test2'),
+
 ]

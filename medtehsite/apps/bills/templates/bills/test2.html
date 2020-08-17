@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>
+      Интернет магазин Dshop
+    </title>
+
+<!--
+    <link rel="stylesheet" href="{ % static 'bills/bill_detail.css' %}">
+-->
+    <link rel="stylesheet" href="/static/bills/bill_detail.css">
+    <link rel="stylesheet" href="/static/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/main.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+      <div class="container-fluid">
+
+        <!-- Оглавление -->
+        <div class="row d-flex justify-content-center">
+            <div class="d-flex p-2 justify-content-center ">
+                <h3 align="center">Подробности заказа запчасти</h3>
+            </div>
+        </div>
+        <!-- /Оглавление -->
+
+
+
+        <!-- Основной ряд в котором две колонки-->
+        <div class="d-flex row">
+          <!-- Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
+          <div class="d-flex col-md">
+            <div class="container">
+              <div class="d-flex py-2 justify-content-center"><h4>Главное по заказу</h4></div>
+
+              <div class="row px-0">
+                <div class="col-sm-3 px-0 py-2 font-weight-bold">Что заказали:</div>
+                <div class="col-sm-3 px-0 py-2">{ { bill.product }} Какое то длинное название</div>
+              </div>
+
+              <div class="row px-0">
+                <div class="col-sm-3 px-0 py-2 font-weight-bold">Поставщик:</div>
+                <div class="col-sm-3 px-0 py-2">{ { bill.supplier }} Какое то длинное название</div>
+              </div>
+
+              <div class="row px-0">
+                <div class="col-sm-3 px-0 py-2 font-weight-bold">Больница:</div>
+                <div class="col-sm-3 px-0 py-2">{ { bill.clinic }}</div>
+              </div>
+
+              <div class="row px-0">
+                <div class="col-sm-3 px-0 py-2 font-weight-bold">Аппарат:</div>
+                <div class="col-sm-3 px-0 py-2">{ { bill.device }}</div>
+              </div>
+
+              <div class="row px-0">
+                <div class="col-sm-3 px-0 py-2 font-weight-bold ">Техник:</div>
+                <div class="col-sm-3 px-0 py-2">{ { bill.engineer }}</div>
+              </div>
+
+              {% if bill.supply == 'Да' %}
+                <div class="row px-0">
+                  <div class="col-sm-3 px-0 py-2 font-weight-bold">Статус:</div>
+                  <div class="col-sm-3 px-0 py-2">Получили</div>
+                </div>
+                <div class="row px-0">
+                  <div class="col-sm-3 px-0 py-2 font-weight-bold">Дата поставки:</div>
+                  <div class="col-sm-3 px-0 py-2 bg-success text-white">{ { bill.supply }}</div>
+                </div>
+              {% else %}
+                <div class="row px-0">
+                  <div class="col-sm-3 px-0 py-2 font-weight-bold">Статус:</div>
+                  <div class="col-sm-3 px-0 py-2 bg-success text-white">Ожидаем</div>
+                </div>
+                <div class="row px-0">
+                  <div class="col-sm-3 px-0 py-2 d-flex align-items-center font-weight-bold">Дата поставки:</div>
+                  <div class="col-sm-3 px-0 py-2 d-flex align-items-center">не доставлено</div>
+                  {% if user.is_authenticated %}
+                  <div class="col-sm-4 d-flex justify-content-center ml-auto">
+                    <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
+                  </div>
+                  {% endif %}
+
+                </div>
+              {% endif %}
+            </div>
+          </div>
+          <!-- /Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
+
+
+          <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
+          <div class="d-flex col-md pt-3">
+            <div class="container">
+              <div class="d-flex py-2 justify-content-center"><h4>Информация по счёту</h4></div>
+              <div class="d-flex">Строка 1</div>
+              <div class="d-flex">Строка 2</div>
+              <div class="d-flex">Строка 3</div>
+              <div class="d-flex">Строка 4</div>
+            </div>
+          </div>
+          <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
+
+
+        </div>
+        <!-- /Основной ряд в котором две колонки-->
+
+
+      </div>
+
+
+
+
+
+<!--
+        <table style="height: 100px;" class="border border-dark">
+          <tbody>
+            <tr>
+              <td class="align-baseline border border-dark">baseline</td>
+              <td class="align-top border border-dark">top</td>
+              <td class="align-middle border border-dark">middle</td>
+              <td class="align-bottom border border-dark">bottom</td>
+              <td class="align-text-top border border-dark">text-top</td>
+              <td class="align-text-bottom border border-dark">text-bottom</td>
+            </tr>
+          </tbody>
+        </table>
+-->
+
+
+
+
+      <!-- /Container -->
+
+      <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+  </body>
+
+</html>

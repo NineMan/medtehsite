@@ -97,3 +97,11 @@ def bill_edit(request, pk):
         # print('product =', form)
     # print('In bill edit')
     return render(request, 'bills/bill_edit.html', {'form': form, 'bill': bill})
+
+
+def test(request):
+    return render(request, 'bills/test.html')
+
+
+def test2(request):
+    return render(request, 'bills/test2.html')

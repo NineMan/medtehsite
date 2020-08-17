@@ -1,0 +1,243 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+
+        <title>Тестовая</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    </head>
+
+
+    <div>
+
+        <!-- Навигационная панель -->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+          <a class="navbar-brand" href="#">
+            <img src="/static/bills/images/mt-1.png" width="56" height="59" class="d-inline-block align-top" alt="" loading="lazy">
+            Медтехника
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Features</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Pricing</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+        <!-- /Навигационная панель -->
+
+<!--
+----------------------------------------------------------------------------
+-->
+
+
+      <div class="container-fluid border border-danger">
+        <div class="row border border-dark">
+          <div class="d-flex col-sm-6 justify-content-center border border-danger">
+            <div class="container">
+              <div class="d-flex row justify-content-center align-content-center border border-dark">
+                <h4 class="border border-success">Главное по заказу-</h4>
+              </div>
+<!--
+                <div class="col justify-content-left pl-5 ml-5 border border-success">
+                  <h4 class="border border-success">Главное по заказу</h4>
+                </div>
+-->
+                <div class="w-100"></div>
+                <div class="col">
+
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr>
+                        <td class="font-weight-bold" width="24%">
+                          Что заказали:
+                        </td><td>
+                          {{ bill.product }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">
+                          Поставщик:
+                        </td><td >
+                          {{ bill.supplier }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">
+                          Больница:
+                        </td><td>
+                          {{ bill.clinic }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">
+                          Аппарат:
+                        </td><td>
+                          {{ bill.device }}
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">
+                          Техник:
+                        </td><td>
+                          {{ bill.engineer }}
+                        </td>
+                      </tr>
+                      {% if bill.supply == 'Да' %}
+                      <tr class="bg-success text-white">
+                        <td class="font-weight-bold">Статус:</td>
+                        <td>Получили</td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">Дата доставки:</td>
+                        <td>{{ bill.supply_date}}</td>
+                      </tr>
+                      {% else %}
+                      <tr>
+                        <td class="font-weight-bold">Статус:</td>
+                        <td >Ожидаем</td>
+                      </tr>
+                      <tr>
+                        <td class="font-weight-bold">Дата доставки:</td>
+                        <td>не доставлено</td>
+                        <td class="py-1" width="30%">
+                          {% if user.is_authenticated %}
+                          <button type="button" class="btn btn-success my-n4" data-toggle="modal" data-target="#exampleModalCentered">
+                            Товар получили
+                          </button>
+                          {% endif %}
+                        </td>
+                      </tr>
+                      {% endif %}
+                    </tbody>
+                  </table>
+
+                  <!-- Modal -->
+                  <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalCenteredLabel">Товар получен</h5>
+                          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div class="modal-body">
+                          Подтвердите получение товара
+                        </div>
+
+                        <div class="modal-footer">
+                          <div class="row">
+                            <div class="col pl-n5">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+                            </div>
+                            <div class="col bg-light">
+                                <form action="{{ bill.pk }}" method="post">
+                                  {% csrf_token %}
+                                  <input type="hidden" name="supply" value="yes">
+                                  <input  class="btn btn-success" type="submit" value="Получили">
+                                </form>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="d-flex col-sm-6 justify-content-center border border-danger">
+            <div class="container">
+              <div class="row">
+                <div class="d-flex col justify-content-left pl-5 ml-5">
+                  <h4>Информация по счёту</h4>
+                </div>
+                <div class="w-100"></div>
+                <div class="col">
+                  <table class="table table-borderless">
+                    <tbody>
+                      <tr><td class="font-weight-bold " width="32%">№ счёта:</td><td>{{ bill.bill_number|default:'-' }}</td></tr>
+                      <tr><td class="font-weight-bold">Дата счёта:</td><td>{{ bill.bill_date|default_if_none:'-' }}</td></tr>
+                      <tr><td class="font-weight-bold">Сумма счёта:</td><td>{{ bill.bill_sum|default_if_none:'-' }}</td></tr>
+                      <tr><td class="font-weight-bold">Дата создания заказа:</td><td>{{ bill.order_date }}</td></tr>
+                      <tr><td class="font-weight-bold">Кто запросил счёт:</td><td>не используется</td></tr>
+                      <tr><td class="font-weight-bold">Комментарий:</td><td>{{ bill.comment|default:'-' }}</td></tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </body>
+
+
+
+
+<!--
+----------------------------------------------------------------------------
+-->
+
+
+<!-- Ссылка на css-файл, где прописан голубой фон -->
+<!--
+        <link rel="stylesheet" href="{ % static 'bills/bill_detail.css' %}">
+-->
+
+
+<!-- Навбар с картинкой и текстом-брендом -->
+<!--
+
+    <nav class="navbar navbar-light bg-light">
+      <a class="navbar-brand" href="#">
+        <img src="/static/bills/images/mt-1.png" width="56" height="59" class="d-inline-block align-top" alt="" loading="lazy">
+        Медтехника
+      </a>
+    </nav>
+-->
+
+
+<!--    Колонки переходящие в строки при уменьшении -->
+
+        <div class="container-fluid">
+            <div class="row mt-3 border border-success">
+
+                <div class="d-flex col-sm-6 border border-dark justify-content-center">
+                    <h3>Колонка 1</h3>
+                </div>
+
+                <div class="d-flex col-sm-6 border border-dark justify-content-center">
+                    <h3>Колонка 2</h3>
+                </div>
+
+            </div>
+        </div>
+
+

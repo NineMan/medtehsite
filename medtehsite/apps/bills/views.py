@@ -105,3 +105,7 @@ def test(request):
 
 def test2(request):
     return render(request, 'bills/test2.html')
+
+
+def test3(request):
+    return render(request, 'bills/test3.html')

@@ -11,6 +11,7 @@
 
 {% block content %}
 
+  <!-- Главный контейнер -->
   <div class="container-fluid">
 
     <!-- Оглавление -->
@@ -21,66 +22,27 @@
       </div>
     </div>
 
-    <!-- Кнопки навигации -->
-<!--
-    <div class="row d-flex justify-content-center border border-dark">
-        <div class="d-flex p-2 justify-content-center ">
-            <h3 align="center">Кнопки навигации</h3>
-        </div>
-    </div>
--->
-    <!-- /Кнопки навигации -->
-
-
-    <!-- Кнопки навигации -->
+    <!-- Кнопки навигации верхние-->
     <div class="d-flex row">
-      <div class="d-flex col-sm">
-
+      <!-- Кнопка "редактировать" для полной версии -->
+      <div class="d-flex col-md justify-content-center">
+        {% if user.is_authenticated %}
+          <button type="button" class="btn btn-primary mr-1 d-md-block d-sm-block d-none " onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
+          <!-- <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button> -->
+        {% else %}
+          <button type="button" class="btn btn-primary mr-1 d-md-block d-sm-block d-none" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
+          <!-- <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button> -->
+        {% endif %}
       </div>
-
+      <!-- Три кнопки навигации для обеих версий-->
       <div class="d-flex col-md justify-content-center">
         <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
         <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
         <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
       </div>
-
-      <!-- Разделитель, появляющийся на "md" экране -->
-      <div class="col d-md-none d-block my-1"></div>
-
-      <div class="d-flex col-md d-md-none d-block justify-content-center">
-        {% if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
-          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
-        {% else %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
-          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
-        {% endif %}
-      </div>
-
-      <div class="col-md d-none d-md-block justify-content-end">
-        {% if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
-<!--
-          <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
--->
-        {% else %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
-<!--
-          <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
--->
-        {% endif %}
-      </div>
-
+      <!-- Вспомогательный ряд -->
+      <div class="col-sm"></div>
     </div>
-    <!-- /Кнопки навигации -->
-
-
-
-
-
-
-
-
 
     <!-- Основной ряд в котором две колонки-->
     <div class="d-flex row">
@@ -220,16 +182,33 @@
       </div>
     </div>
 
-
-
-
-
-
+    <!-- Кнопки навигации нижние -->
+    <div class="d-flex row">
+      <!-- Кнопка "редактировать" для мобильной версии -->
+      <div class="d-flex col-md d-md-none d-block justify-content-center">
+        {% if user.is_authenticated %}
+          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
+          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
+        {% else %}
+          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
+          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
+        {% endif %}
+      </div>
+      <!-- Разделитель, появляющийся на "md" экране -->
+      <div class="col d-md-none d-block my-1"></div>
+      <!-- Три кнопки навигации (нужно только для мобильной версии) -->
+      <div class="d-flex col-md d-md-none d-block justify-content-center">
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
+      </div>
+      <!-- Разделитель, появляющийся на "md" экране -->
+      <div class="col d-md-none d-block my-1"></div>
+    </div>
 
   </div>
 
-
-  <!-- Modal   модальное окно подтверждения получения поставки -->
+  <!-- Modal - Модальное окно подтверждения поставки -->
   <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

@@ -16,7 +16,8 @@
     <!-- Оглавление -->
     <div class="row d-flex justify-content-center">
       <div class="d-flex p-2 justify-content-center ">
-        <h3 align="center">Заказ запчасти</h3>
+        <h3 class="d-none d-sm-block" align="center">Подробности заказа</h3>
+        <h4  class="d-sm-none d-block" align="center">Подробности заказа</h4>
       </div>
     </div>
 
@@ -44,7 +45,7 @@
       </div>
 
       <!-- Разделитель, появляющийся на "md" экране -->
-      <div class="col d-md-none d-block "><p></p></div>
+      <div class="col d-md-none d-block my-1"></div>
 
       <div class="d-flex col-md d-md-none d-block justify-content-center">
         {% if user.is_authenticated %}
@@ -87,50 +88,66 @@
       <!-- Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
       <div class="d-flex col-md">
         <div class="container">
-          <div class="py-2 justify-content-left pl-4 ml-4 d-none d-sm-block"><h4>Главное по заказу</h4></div>
-          <div class="d-flex py-2 justify-content-center px-0 mx-0 d-sm-none d-block"><h4>Главное по заказу</h4></div>
+          <div class="py-2 pl-4 ml-4 d-none d-sm-block"><h4>Главное по заказу</h4></div>
+          <div class="pt-3           d-sm-none d-block"><h5>Главное по заказу</h5></div>
 
-          <div class="row px-0 mb-3">
-            <div class="col-sm-3 px-0 py-2">Что заказали:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.product }}</div>
+          <div class="row px-0 my-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Что заказали:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Что заказали:</div>
+            <div class="col-sm   py-2 font-weight-bold d-none d-sm-block">{{ bill.product }}</div>
+            <div class="col-sm   py-0 font-weight-bold d-sm-none d-block">{{ bill.product }}</div>
           </div>
 
-          <div class="row px-0 mb-3">
-            <div class="col-sm-3 px-0 py-2">Поставщик:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.supplier }}</div>
+          <div class="row px-0 my-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Поставщик:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Поставщик:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.supplier }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.supplier }}</div>
           </div>
 
-          <div class="row px-0 mb-3">
-            <div class="col-sm-3 px-0 py-2">Больница:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.clinic }}</div>
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Больница:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Больница:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.clinic }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.clinic }}</div>
           </div>
 
-          <div class="row px-0 mb-3">
-            <div class="col-sm-3 px-0 py-2">Аппарат:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.device }}</div>
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Аппарат:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Аппарат:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.device }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.device }}</div>
           </div>
 
-          <div class="row px-0 mb-3">
-            <div class="col-sm-3 px-0 py-2">Техник:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.engineer }}</div>
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Техник:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Техник:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.engineer }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.engineer }}</div>
           </div>
 
           {% if bill.supply == 'Да' %}
-            <div class="row px-0 mb-3">
-              <div class="col-sm-3 px-0 py-2">Статус:</div>
-              <div class="col-sm   px-4 py-2 font-weight-bold bg-success text-white ml-n4">Получили</div>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3      py-2 d-none d-sm-block">Статус:</div>
+              <div class="col-sm-3      py-0 d-sm-none d-block">Статус:</div>
+              <div class="col-sm   px-4 py-2 d-none d-sm-block font-weight-bold bg-success text-white ml-n4">Получили</div>
+              <div class="col-sm   px-4 py-0 d-sm-none d-block font-weight-bold bg-success text-white ml-n4">Получили</div>
             </div>
-            <div class="row px-0 mb-3">
-              <div class="col-sm-3 px-0 py-2">Дата поставки:</div>
-              <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.supply_date }}</div>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2 d-none d-sm-block">Дата поставки:</div>
+              <div class="col-sm-3 py-0 d-sm-none d-block">Дата поставки:</div>
+              <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.supply_date }}</div>
+              <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.supply_date }}</div>
             </div>
           {% else %}
-            <div class="row px-0 mb-3">
-              <div class="col-sm-3 px-0 py-2">Статус:</div>
-              <div class="col-sm-3 px-0 py-2 font-weight-bold">Ожидаем</div>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2 d-none d-sm-block">Статус:</div>
+              <div class="col-sm-3 py-0 d-sm-none d-block">Статус:</div>
+              <div class="col-sm-3 py-2 d-none d-sm-block font-weight-bold">Ожидаем</div>
+              <div class="col-sm-3 py-0 d-sm-none d-block font-weight-bold">Ожидаем</div>
             </div>
 
-            <div class="row px-0 mb-3">
+            <div class="row px-0 mb-2">
               {% if user.is_authenticated %}
               <div class="col-sm-6 d-flex justify-content-center">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
@@ -147,42 +164,56 @@
       <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
       <div class="d-flex col-md">
         <div class="container">
-          <div class="       py-2 justify-content-left   pl-4 ml-4 d-none d-sm-block"><h4>Информация по счёту</h4></div>
-          <div class="d-flex py-2 justify-content-center px-0 mx-0 d-sm-none d-block"><h4>Информация по счёту</h4></div>
+          <div class="py-2 justify-content-left   pl-4 ml-4 d-none d-sm-block"><h4>Информация по счёту</h4></div>
+          <div class="py-2                        px-0 mx-0 d-sm-none d-block"><h5>Информация по счёту</h5></div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">№ счёта:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">№ счёта:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">№ счёта:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">Дата счёта:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">Дата счёта:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">Дата счёта:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">Сумма счёта:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">Сумма счёта:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">Сумма счёта:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">Дата создания заказа:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.order_date }}</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">Дата создания заказа:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">Дата создания заказа:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.order_date }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.order_date }}</div>
           </div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">Дней как заказали:</div>
-            <div class="col-sm   px-0 py-2">не используется</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">Дней как заказали:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">Дней как заказали:</div>
+            <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
+            <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">Кто запросил счёт:</div>
-            <div class="col-sm   px-0 py-2">не используется</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">Кто запросил счёт:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">Кто запросил счёт:</div>
+            <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
+            <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
           <div class="row px-0 mb-3">
-            <div class="col-sm-4 px-0 py-2">Комментарий:</div>
-            <div class="col-sm   px-0 py-2 font-weight-bold">{{ bill.comment|default:'-' }}</div>
+            <div class="col-sm-4 py-2 d-none d-sm-block">Комментарий:</div>
+            <div class="col-sm-4 py-0 d-sm-none d-block">Комментарий:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
           </div>
 
         </div>

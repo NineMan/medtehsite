@@ -6,10 +6,12 @@
 {% endblock %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'bills/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'bills/css/bill_list.css' %}">
 {% endblock %}
 
 {% block content %}
+
+  <!-- Шапка (Оглавление) -->
   <div class="container-fluid">
     <div class="row">
       <div class="col">
@@ -68,6 +70,7 @@
     </div>
   </div>
 
+  <!-- Основная таблица -->
   <table class="table table-hover table-lg pt-5 table-bordered">
     <thead class="thead-dark">
       <tr>
@@ -112,5 +115,6 @@
       {% endfor %}
     </tbody>
   </table>
+
 {% endblock %}
 

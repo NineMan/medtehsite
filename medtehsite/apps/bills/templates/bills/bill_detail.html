@@ -18,7 +18,7 @@
     <div class="row d-flex justify-content-center">
       <div class="d-flex p-2 justify-content-center ">
         <h3 class="d-none d-sm-block" align="center">Подробности заказа</h3>
-        <h4  class="d-sm-none d-block" align="center">Подробности заказа</h4>
+        <h4 class="d-sm-none d-block" align="center">Подробности заказа</h4>
       </div>
     </div>
 
@@ -77,8 +77,8 @@
           <div class="row px-0 mb-2">
             <div class="col-sm-3 py-2 d-none d-sm-block">Аппарат:</div>
             <div class="col-sm-3 py-0 d-sm-none d-block">Аппарат:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.device }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.device }}</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.device|default:'-' }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.device|default:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-2">

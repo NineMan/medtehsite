@@ -118,9 +118,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'Ru'
-# LANGUAGE_CODE = 'en-us'
-# LANGUAGE_CODE = 'Ru'
+LANGUAGE_CODE = 'ru-Ru'     # for django 3.1
+# LANGUAGE_CODE = 'en-us'     # default
+# LANGUAGE_CODE = 'Ru'        # for django ~2.2
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Europe/Volgograd'

@@ -37,7 +37,7 @@
 
       </div>
 
-      <div class="d-flex col-sm justify-content-center">
+      <div class="d-flex col-md justify-content-center">
         <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
         <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
         <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
@@ -46,23 +46,27 @@
       <!-- Разделитель, появляющийся на "md" экране -->
       <div class="col d-md-none d-block "><p></p></div>
 
-      <div class="d-flex col-sm d-sm-none d-block justify-content-end pr-5">
+      <div class="d-flex col-md d-md-none d-block justify-content-center">
         {% if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать1</button>
-          <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
+          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
+          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
         {% else %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать1</button>
-          <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
+          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
+          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
         {% endif %}
       </div>
 
-      <div class="col-sm d-none d-sm-block justify-content-end pl-5">
+      <div class="col-md d-none d-md-block justify-content-end">
         {% if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать2</button>
+          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
+<!--
           <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
+-->
         {% else %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать2</button>
+          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
+<!--
           <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
+-->
         {% endif %}
       </div>
 

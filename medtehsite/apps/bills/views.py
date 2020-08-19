@@ -4,6 +4,7 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
 from .models import Bill
+from .models import Person
 from .forms import BillForm
 
 
@@ -17,7 +18,7 @@ def bill_list(request):
     else:
         bills = Bill.objects.filter(supply='Нет')
 
-    return render(request, 'bills/bill_list.html', {'bills': bills})
+    return render(request, 'bills/bill_list.html', {'bills': bills, 'person': Person})
 
 
 def bill_detail(request, pk):

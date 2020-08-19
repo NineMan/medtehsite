@@ -45,23 +45,27 @@
         <div class="d-flex col justify-content-end">
 
           <!-- Кнопка "Выйти" -->
-<!--
+          <!--
           <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
             <a href="{ % url 'logout' %}" class="btn btn-success ml-5">Выйти</a>
           </div>
--->
+          -->
 
+          <!-- Выпадающее меню -->
           <ul class="navbar-nav pr-3">
             <li class="nav-item dropleft">
               <a class="nav-link dropdown-toggle pt-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ user.username }}
+                {{ Person.username }}
+<!--
+                { { user.username }}
+-->
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                 <!-- Дополнительная строчка в выпадающем меню -->
-
+<!--
                 <a class="dropdown-item" href="#">Action</a>
                 <div class="dropdown-divider"></div>
-
+-->
                 <a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a>
               </div>
              </li>
@@ -79,6 +83,11 @@
 
     </div>
   </div>
+
+
+
+
+
 
   <!-- Основная таблица -->
   <table class="table table-hover table-lg pt-5 table-bordered">

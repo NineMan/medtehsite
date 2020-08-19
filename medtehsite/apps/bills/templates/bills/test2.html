@@ -2,170 +2,242 @@
 {% load static %}
 
 {% block title %}
-  Подробности заказа
+  test2
 {% endblock %}
 
 {% block link %}
-  <link rel="stylesheet" href="{% static 'bills/bill_detail.css' %}">
+<!--
+  <link rel="stylesheet" href="{ % static 'bills/bill_detail.css' %}">
+-->
 {% endblock %}
 
 {% block content %}
 
-  <div class="container-fluid">
-
-    <!-- Оглавление -->
-    <div class="row d-flex justify-content-center border border-dark">
-      <div class="d-flex p-2 justify-content-center ">
-        <h3 align="center">Подробности заказа запчасти</h3>
+  <!--
+  <div class="fixed-top">
+    <div class="collapse" id="navbarToggleExternalContent">
+      <div class="bg-dark p-4">
+        <h5 class="text-white h4">Collapsed content</h5>
+        <span class="text-muted">Toggleable via the navbar brand.</span>
       </div>
     </div>
-    <!-- /Оглавление -->
-
-    <!-- Основной ряд в котором две колонки-->
-    <div class="d-flex row border border-dark">
-
-      <!-- Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
-<!--
-      <div class="d-flex col-md border border-dark">
-        <div class="container border border-dark">
-          <div class="py-2 justify-content-left pl-4 ml-4 d-none d-sm-block border border-dark"><h4>Главное по заказу 1</h4></div>
-          <div class="d-flex py-2 justify-content-center px-0 mx-0 d-sm-none d-block border border-dark"><h4>Главное по заказу 2</h4></div>
-
-          <div class="row px-0 border border-dark">
-            <div class="col-sm-3 px-0 py-2 font-weight-bold">Что заказали:</div>
-            <div class="col-sm   px-0 py-2 border border-dark">{ { bill.product }} Какое то длинное название</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-3 px-0 py-2 font-weight-bold">Поставщик:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.supplier }} Какое то длинное название</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-3 px-0 py-2 font-weight-bold">Больница:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.clinic }}</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-3 px-0 py-2 font-weight-bold">Аппарат:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.device }}</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-3 px-0 py-2 font-weight-bold border border-dark">Техник:</div>
-            <div class="col-sm   px-0 py-2 border border-dark">{ { bill.engineer }}</div>
-          </div>
-
-          {% if bill.supply == 'Да' %}
-            <div class="row px-0">
-              <div class="col-sm-3 px-0 py-2 font-weight-bold">Статус:</div>
-              <div class="col-sm   px-0 py-2">Получили</div>
-            </div>
-            <div class="row px-0">
-              <div class="col-sm-3 px-0 py-2 font-weight-bold">Дата поставки:</div>
-              <div class="col-sm   px-0 py-2 bg-success text-white">{ { bill.supply }}</div>
-            </div>
-          {% else %}
-            <div class="row px-0">
-              <div class="col-sm-3 px-0 py-2 font-weight-bold">Статус:</div>
-              <div class="col-sm-3 px-0 py-2 bg-success text-white">Ожидаем</div>
-            </div>
-            <div class="row px-0">
-              <div class="col-sm-3 px-0 py-2 d-flex align-items-center font-weight-bold border border-dark">Дата поставки:</div>
-              <div class="col-sm-3 px-0 py-2 d-flex align-items-center border border-dark">не доставлено</div>
-              {% if user.is_authenticated %}
-              <div class="col-sm-4 d-flex justify-content-center ml-auto border border-dark">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
-              </div>
-              {% endif %}
-
-            </div>
-          {% endif %}
-        </div>
-      </div>
--->
-      <!-- Разделитель, появляющийся на "md" экране -->
-<!--
-      <div class="d-md-none d-block border border-dark "><p></p></div>
--->
-
-
-      <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
-<!--
-      <div class="d-flex col-md border border-dark">
-        <div class="container border border-dark">
-          <div class="py-2 justify-content-left pl-4 ml-4 d-none d-sm-block border border-dark"><h4>Информация по счёту 1</h4></div>
-          <div class="d-flex py-2 justify-content-center px-0 mx-0 d-sm-none d-block border border-dark"><h4>Информация по счёту 2</h4></div>
-
-          <div class="row px-0">
-            <div class="col-sm-4 px-0 py-2 font-weight-bold">№ счёта:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.bill_number|default:'-' }}</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-4 px-0 py-2 font-weight-bold">Дата счёта:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.bill_date|default_if_none:'-' }}</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-4 px-0 py-2 font-weight-bold">Сумма счёта:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.bill_sum|default_if_none:'-' }}</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-4 px-0 py-2 font-weight-bold bg-dark">Дата создания заказа:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.order_date }}</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-4 px-0 py-2 font-weight-bold bg-dark">Кто запросил счёт:</div>
-            <div class="col-sm   px-0 py-2">не используется</div>
-          </div>
-
-          <div class="row px-0">
-            <div class="col-sm-4 px-0 py-2 font-weight-bold">Комментарий:</div>
-            <div class="col-sm   px-0 py-2">{ { bill.comment|default:'-' }}</div>
-          </div>
-
-        </div>
-      </div>
--->
-
-    </div>
-
-    <!-- Кнопки навигации -->
-    <div class="row d-flex justify-content-center border border-dark">
-        <div class="d-flex p-2 justify-content-center ">
-            <h3 align="center">Кнопки навигации</h3>
-        </div>
-    </div>
-    <!-- /Кнопки навигации -->
-
-
-    <!-- Кнопки навигации -->
-    <div class="d-flex row mt-3">
-      <div class="col"></div>
-
-      <div class="d-flex col-sm-6 justify-content-center">
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{ { bill.pk|add:-1 }}';"><<</button>
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{ { bill.pk|add:1 }}';">>></button>
-      </div>
-
-      <div class="d-flex col-sm-3 justify-content-end pr-5">
-        { % if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{ % url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
-          <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
-        { % else %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{ % url 'login' %}'">Редактировать</button>
-          <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>
-        { % endif %}
-      </div>
-
-    </div>
-
-    <!-- /Кнопки навигации -->
-
+    <nav class="navbar navbar-dark bg-dark">
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
   </div>
+  -->
+
+  <!--
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+  -->
+
+  <!--
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+  <!--
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Navbar</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Features</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Pricing</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown link
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+  <!-- ------------------------------- -->
+
+  <!-- collapse navbar-collapse -->
+  <!--
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler"                     type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#">Disabled</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+  <!-- navbar-toggler -->
+  <!--
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <a class="navbar-brand" href="#">Navbar</a>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-md-0">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Link</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  -->
+
+  <!-- nested columns -->
+  <!--
+  <div class="row border border-dark">
+    <div class="col-sm-9 border border-dark">
+      Level 1: .col-sm-9
+      <div class="row border border-dark">
+        <div class="col-sm-8 col-6 border border-dark">
+          Level 2: .col-8 .col-sm-6
+        </div>
+        <div class="col-sm-4 col-6 border border-dark">
+          Level 2: .col-4 .col-sm-6
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- modal-lg-->
+  <!--
+  <button class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">
+    Large modal
+  </button>
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        ...
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- modal-lg-->
+  <!--
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-sm">
+    Small modal
+  </button>
+  <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        ...
+      </div>
+    </div>
+  </div>
+  -->
+
+  <!-- modal fade -->
+  <!--
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal3">
+    Launch demo modal
+  </button>
+
+  <div class="modal fade" id="exampleModal3" tabindex="-1" role="dialog" aria-labelledby="exampleModal3Label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModal3Label">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  -->
+
 
 {% endblock %}

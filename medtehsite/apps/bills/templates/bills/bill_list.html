@@ -11,9 +11,10 @@
 
 {% block content %}
 
-  <!-- Шапка (Оглавление) -->
+  <!-- Шапка (navbar) -->
   <div class="container-fluid">
     <div class="row">
+      <!-- Кнопки -->
       <div class="col">
         <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
           <form action="{% url 'bills:bill_list' %}" method="get">
@@ -30,6 +31,7 @@
         </div>
       </div>
 
+      <!-- Оглавление -->
       <div class="col-5">
         <div class="sticky-top py-1">
           <h3 align="center">
@@ -38,13 +40,16 @@
         </div>
       </div>
 
+      <!-- Кнопка регистрации -->
       {% if user.is_authenticated %}
         <div class="d-flex col justify-content-end">
 
-<!--    Кнопка "Выйти"
+          <!-- Кнопка "Выйти" -->
+<!--
           <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
             <a href="{ % url 'logout' %}" class="btn btn-success ml-5">Выйти</a>
-          </div> -->
+          </div>
+-->
 
           <ul class="navbar-nav pr-3">
             <li class="nav-item dropleft">
@@ -52,9 +57,11 @@
                 {{ user.username }}
               </a>
               <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-<!--    Дополнительная строчка в выпадающем меню
+                <!-- Дополнительная строчка в выпадающем меню -->
+
                 <a class="dropdown-item" href="#">Action</a>
-                <div class="dropdown-divider"></div> -->
+                <div class="dropdown-divider"></div>
+
                 <a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a>
               </div>
              </li>
@@ -67,6 +74,9 @@
           </div>
         </div>
       {% endif %}
+      <!-- Кнопка регистрации -->
+
+
     </div>
   </div>
 

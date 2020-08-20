@@ -100,11 +100,28 @@ def bill_edit(request, pk):
 
 
 def test(request):
-    return render(request, 'test/test.html')
+
+    return render(request, 'test/test.html', )
 
 
 def test2(request):
-    return render(request, 'test/test2.html')
+    bill = Bill.objects.get(pk=2)
+    form = BillForm(instance=bill)
+    # if request.method == 'POST':
+    #     form = BillForm(request.POST, instance=bill)
+    #     if form.instance.supply == "Да":
+    #         bill.supply_date = timezone.now()
+    #     elif form.instance.supply == "Нет":
+    #         bill.supply_date = None
+    #
+    #     if form.is_valid():
+    #         bill = form.save()
+    #         bill.save()
+    #         return redirect('bills:bill_detail', pk=bill.pk)
+    # else:
+    #     form = BillForm(instance=bill)
+
+    return render(request, 'test/test2.html', {'form': form, 'bill': bill})
 
 
 def test3(request):

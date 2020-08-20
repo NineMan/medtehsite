@@ -11,20 +11,28 @@
 
 {% block content %}
 
-  <!-- Навигационная панель -->
+
   <div class="container-fluid px-0">
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <!-- Навигационная панель / последний вариант -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
 
       <!-- Бренд с картинкой -->
-      <a class="navbar-brand border border-dark text-danger" href="#">
-        <img src="/static/bills/images/mt-1.png" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+      <a class="navbar-brand text-danger" href="#">
+        <!--
+        <img src="/static/bills/images/mt.png" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+        -->
           Медтехника
       </a>
-      <!-- Тоглер (менюшка с тремя полосками) -->
+      <!-- Кнопка нового заказа -->
+      {% if user.is_authenticated %}
+      <a href="{% url 'bills:bill_new' %}" class="btn btn-success my-n4">Новый заказ</a>
+      {% else %}
+      <a href="{% url 'login' %}" class="btn btn-secondary my-n4">Новый заказ</a>
+      {% endif %}
+      <!-- Тогглер (менюшка с тремя полосками) -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-
       <!-- Ссылки которые сворачиваются при уменьшении -->
       <div class="collapse navbar-collapse border border-dark" id="navbarNav">
         <ul class="navbar-nav mr-auto">
@@ -79,64 +87,132 @@
     </nav>
   </div>
 
-  <div class="w-100"></div>
-
-
 
   <!-- Основная таблица -->
-  <table class="table table-hover table-lg pt-5 table-bordered">
+  <div class="table-responsive-md">
+    <table class="table table-hover table-sm pt-5 table-bordered" width="100%">
+
     <thead class="thead-dark">
       <tr>
-        <th class="sticky-top py-3 d-none d-sm-table-cell">№</th>
+        <th class="sticky-top py-3 d-none d-md-table-cell" width="2%">№</th>
         <th class="sticky-top py-3">Что заказали</th>
-<!--
-        <th class="sticky-top py-3">
-          <div class="container-fluid">
-            <div class="row">
-              <div class="col">Что заказали</div>
-              { % if user.is_authenticated %}
-              <div class="col"><a href="{ % url 'bills:bill_new' %}" class="btn btn-primary my-n4">Новый заказ</a></div>
-              { % endif %}
-            </div>
-          </div>
-        </th>
--->
-        <!--
         <th class="sticky-top py-3" width="18%">Поставщик</th>
-        <th class="sticky-top py-3" width="20%">ЛПУ</th>
-        <th class="sticky-top py-3" width="10%">Техник</th>
-        -->
-        <th class="sticky-top py-3">Поставщик</th>
-        <th class="sticky-top py-3">ЛПУ</th>
-        <th class="sticky-top py-3">Техник</th>
+        <th class="sticky-top py-3 " width="20%">ЛПУ</th>
+        <th class="sticky-top py-3 d-none d-sm-table-cell" width="10%">Техник</th>
+        <th class="sticky-top py-3 d-none d-sm-table-cell" >Доставлено</th>
+        <th class="sticky-top py-3 d-none d-md-table-cell">Дата доставки</th>
 
-        <th class="sticky-top py-3 d-none d-sm-table-cell">Доставлено</th>
-        <th class="sticky-top py-3 d-none d-sm-table-cell">Дата доставки</th>
       </tr>
     </thead>
+
     <tbody>
       {% for bill in bills %}
         <tr class="border-bottom" onclick="window.location.href = 'bill/{{ bill.pk }}';">
-          <td class="d-none d-sm-table-cell">{{ forloop.counter }}</td>
+          <td class="d-none d-md-table-cell">{{ forloop.counter }}</td>
           <td>{{ bill.product }}</td>
           <td>{{ bill.supplier }}</td>
           <td>{{ bill.clinic }}</td>
-          <td>{{ bill.engineer }}</td>
+          <td class="d-none d-sm-table-cell">{{ bill.engineer }}</td>
           <td class="d-none d-sm-table-cell">{{ bill.supply }}</td>
           {% if bill.supply == 'Нет' %}
-            <td class="d-none d-sm-table-cell">не доставлено</td>
+            <td class="d-none d-md-table-cell">не доставлено</td>
           {% else %}
-            <td class="d-none d-sm-table-cell">{{ bill.supply_date }}</td>
+            <td class="d-none d-md-table-cell">{{ bill.supply_date }}</td>
           {% endif %}
         </tr>
       {% endfor %}
     </tbody>
   </table>
-
+  </div>
 
 
 {% endblock %}
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="container-fluid px-0">
+    <!-- Навигационная панель / последний вариант -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+      <!-- Бренд с картинкой -->
+      <a class="navbar-brand border border-dark text-danger" href="#">
+        <img src="/static/bills/images/mt-1.png" height="30" class="d-inline-block align-top" alt="" loading="lazy">
+          Медтехника
+      </a>
+      <!-- Тогглер (менюшка с тремя полосками) -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- Ссылки которые сворачиваются при уменьшении -->
+      <div class="collapse navbar-collapse border border-dark" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <!-- <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a> -->
+            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Главная</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="{% url 'bills:bill_list' %}">Ожидаем</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=supply">Полученные</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=all">Все заказы</a>
+          </li>
+        </ul>
+
+        <!-- Форма для кнопки регистрации -->
+        <form class="form-inline my-2 my-lg-0">
+          <!-- Кнопка регистрации -->
+          {% if user.is_authenticated %}
+            <div class="d-flex col justify-content-left">
+              <!-- Выпадающее меню -->
+              <ul class="navbar-nav pr-3">
+                <li class="nav-item dropleft">
+                  <a class="nav-link dropdown-toggle pt-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.last_name }}
+                  </a>
+                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                    <!-- Дополнительная строчка в выпадающем меню -->
+                    <!--
+                    <a class="dropdown-item" href="#">Action</a>
+                    <div class="dropdown-divider"></div>
+                    -->
+                    <a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a>
+                  </div>
+                 </li>
+              </ul>
+            </div>
+          {% else %}
+            <div class="d-flex col justify-content-end">
+              <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
+                <a href="{% url 'login' %}" class="btn btn-success">  Вход  </a>
+              </div>
+            </div>
+          {% endif %}
+          <!-- /Кнопка регистрации -->
+        </form>
+
+      </div>
+    </nav>
+  </div>
 
 
   <!-- Шапка (navbar) / старый вариант -->

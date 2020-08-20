@@ -100,12 +100,12 @@ def bill_edit(request, pk):
 
 
 def test(request):
-    return render(request, 'bills/test.html')
+    return render(request, 'test/test.html')
 
 
 def test2(request):
-    return render(request, 'bills/test2.html')
+    return render(request, 'test/test2.html')
 
 
 def test3(request):
-    return render(request, 'bills/test3.html')
+    return render(request, 'test/test3.html')

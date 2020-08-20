@@ -27,10 +27,10 @@
       <!-- Кнопка "редактировать" для полной версии -->
       <div class="d-flex col-md justify-content-center">
         {% if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1 d-md-block d-sm-block d-none " onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
+          <button type="button" class="btn btn-success mr-1 d-none d-md-block" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
           <!-- <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button> -->
         {% else %}
-          <button type="button" class="btn btn-primary mr-1 d-md-block d-sm-block d-none" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
+          <button type="button" class="btn btn-secondary mr-1 d-none d-md-block" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
           <!-- <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button> -->
         {% endif %}
       </div>
@@ -92,8 +92,8 @@
             <div class="row px-0 mb-2">
               <div class="col-sm-3      py-2 d-none d-sm-block">Статус:</div>
               <div class="col-sm-3      py-0 d-sm-none d-block">Статус:</div>
-              <div class="col-sm   px-4 py-2 d-none d-sm-block font-weight-bold bg-success text-white ml-n4">Получили</div>
-              <div class="col-sm   px-4 py-0 d-sm-none d-block font-weight-bold bg-success text-white ml-n4">Получили</div>
+              <div class="col-sm-3 col-5 px-4 py-2 d-none d-sm-block font-weight-bold bg-success text-white ml-n2">Получили</div>
+              <div class="col-sm-3 col-5 px-4 py-0 d-sm-none d-block font-weight-bold bg-success text-white ml-n2">Получили</div>
             </div>
             <div class="row px-0 mb-2">
               <div class="col-sm-3 py-2 d-none d-sm-block">Дата поставки:</div>
@@ -114,6 +114,10 @@
               <div class="col-sm-6 d-flex justify-content-center">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
               </div>
+              {% else %}
+              <div class="col-sm-6 d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'login' %}'">Товар получили</button>
+             </div>
               {% endif %}
             </div>
           {% endif %}

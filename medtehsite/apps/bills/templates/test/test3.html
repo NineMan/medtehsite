@@ -1,0 +1,135 @@
+<!-- Пример взят https://qna.habr.com/q/607788 -->
+<!-- Создание адаптивной страницы (на Bootstrap 3) -->
+
+{% extends 'bills/base.html' %}
+{% load static %}
+
+{% block title %}
+  Подробности заказа
+{% endblock %}
+
+{% block link %}
+<!--
+  <link rel="stylesheet" href="{ % static 'bills/bill_detail.css' %}">
+-->
+{% endblock %}
+
+{% block content %}
+
+
+
+<table class="table table-hover shoplist table-bordered">
+  <thead>
+  <tr><th class="col-lg-12">Данный товар доступен в следующих магазинах</th></tr>
+  </thead>
+
+
+  <tbody>
+      <!-- ряд 1 -->
+    <tr class="shopunit border border-dark" data-sizes="[&quot;4&quot;, &quot;3&quot;, &quot;2&quot;, &quot;1&quot;]">
+      <td>
+        <div class="row ">
+          <div class="col-md col-sm-3 col-xs-6 border border-dark">
+            г.Москва
+            <div class="visible-sm bg-success">
+              Пражская
+            </div>
+          </div>
+
+          <div class="col-md col-sm-5 col-xs-12 border border-dark"></div>
+
+          <div class="col-md-3 col-sm-3 col-xs-12 hidden-sm border border-dark">
+            <i class="fa fa-subway"></i>
+            &nbsp;Пражская
+          </div>
+
+          <div class="col-md-2 col-sm-4 col-xs-12 border border-dark">
+            <i class="fa fa-clock-o fa-2"></i>
+            &nbsp;пн-вс с 10 до 22
+          </div>
+
+        </div>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+{% endblock %}
+
+        <!-- ряд 2 -->
+        <!--
+        <tr class="shopunit" data-sizes="[&quot;4&quot;, &quot;3&quot;, &quot;2&quot;, &quot;1&quot;]">
+            <td>
+                <div class="row">
+                    <div class="col-md-2 col-sm-3 col-xs-6 ">г.Санкт-Петербург<div class="visible-sm">Озерки</div></div>
+                    <div class="col-md-5 col-sm-5 col-xs-12 "></div>
+                    <div class="col-md-3 col-sm-3 col-xs-12 hidden-sm"><i class="fa fa-subway"></i>&nbsp;Озерки</div>
+                    <div class="col-md-2 col-sm-4 col-xs-12"><i class="fa fa-clock-o fa-2"></i>&nbsp;пн-вс с 10 до 22</div>
+                </div>
+            </td>
+        </tr>
+        -->
+
+
+  <!-- Основная таблица -->
+  <table class="table table-hover table-sm pt-5 table-bordered">
+
+        <thead class="thead-dark">
+          <tr>
+            <th class="sticky-top py-3 d-none d-sm-table-cell" width="2%">№</th>
+            <!--
+            <th class="sticky-top py-3">Что заказали</th>
+            -->
+            <!-- Кнопка нового заказа -->
+            <th class="sticky-top py-3">
+              <div class="container-fluid">
+                <div class="row">
+                  <div class="col">Что заказали</div>
+                  {% if user.is_authenticated %}
+                  <div class="col"><a href="{% url 'bills:bill_new' %}" class="btn btn-primary my-n4">Новый заказ</a></div>
+                  {% endif %}
+                </div>
+              </div>
+            </th>
+
+            <th class="sticky-top py-3" width="18%">Поставщик</th>
+            <th class="sticky-top py-3 " width="20%">ЛПУ</th>
+            <th class="sticky-top py-3" width="10%">Техник</th>
+            <th class="sticky-top py-3 d-none d-sm-table-cell" >Доставлено</th>
+            <th class="sticky-top py-3 d-none d-sm-table-cell">Дата доставки</th>
+
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for bill in bills %}
+            <tr class="border-bottom" onclick="window.location.href = 'bill/{{ bill.pk }}';">
+              <td class="d-none d-sm-table-cell">{{ forloop.counter }}</td>
+              <td>{{ bill.product }}</td>
+              <td>{{ bill.supplier }}</td>
+              <td>{{ bill.clinic }}</td>
+              <td>{{ bill.engineer }}</td>
+              <td class="d-none d-sm-table-cell">{{ bill.supply }}</td>
+              {% if bill.supply == 'Нет' %}
+                <td class="d-none d-sm-table-cell">не доставлено</td>
+              {% else %}
+                <td class="d-none d-sm-table-cell">{{ bill.supply_date }}</td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+
+  <!-- Дополнительный тестовый ряд из 4-х боксов -->
+  <div class="d-flex flex-nowrap bd-highlight">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-3 p-2 bd-highlight border border-dark">1 First flex item 1</div>
+        <div class="col-sm-3 p-2 bd-highlight border border-dark">2 Second flex item</div>
+        <div class="col-sm-3 p-2 bd-highlight border border-dark">1 First flex item 2</div>
+        <div class="col-sm-3 p-2 bd-highlight border border-dark">3 Third flex item</div>
+      </div>
+    </div>
+  </div>

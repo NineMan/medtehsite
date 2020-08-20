@@ -6,7 +6,7 @@
 {% endblock %}
 
 {% block link %}
-    <link rel="stylesheet" href="{% static 'bills/css/bill_list.css' %}">
+  <link rel="stylesheet" href="{% static 'bills/css/bill_list.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -94,13 +94,13 @@
 
     <thead class="thead-dark">
       <tr>
-        <th class="sticky-top py-3 d-none d-md-table-cell" width="2%">№</th>
-        <th class="sticky-top py-3">Что заказали</th>
-        <th class="sticky-top py-3" width="18%">Поставщик</th>
-        <th class="sticky-top py-3 " width="20%">ЛПУ</th>
-        <th class="sticky-top py-3 d-none d-sm-table-cell" width="10%">Техник</th>
-        <th class="sticky-top py-3 d-none d-sm-table-cell" >Доставлено</th>
-        <th class="sticky-top py-3 d-none d-md-table-cell">Дата доставки</th>
+        <th class="sticky-top py-3 text-center align-middle d-none d-md-table-cell" width="2%">№</th>
+        <th class="sticky-top py-3 text-center align-middle">Что заказали</th>
+        <th class="sticky-top py-3 text-center align-middle" width="18%">Поставщик</th>
+        <th class="sticky-top py-3 text-center align-middle" width="20%">ЛПУ</th>
+        <th class="sticky-top py-3 text-center align-middle" width="10%">Техник</th>
+        <th class="sticky-top py-3 text-center align-middle d-none d-sm-table-cell" >Доставлено</th>
+        <th class="sticky-top py-3 text-center align-middle d-none d-md-table-cell">Дата доставки</th>
 
       </tr>
     </thead>
@@ -108,16 +108,16 @@
     <tbody>
       {% for bill in bills %}
         <tr class="border-bottom" onclick="window.location.href = 'bill/{{ bill.pk }}';">
-          <td class="d-none d-md-table-cell">{{ forloop.counter }}</td>
-          <td>{{ bill.product }}</td>
-          <td>{{ bill.supplier }}</td>
-          <td>{{ bill.clinic }}</td>
-          <td class="d-none d-sm-table-cell">{{ bill.engineer }}</td>
-          <td class="d-none d-sm-table-cell">{{ bill.supply }}</td>
+          <td class="align-middle d-none d-md-table-cell">{{ forloop.counter }}</td>
+          <td class="align-middle">{{ bill.product }}</td>
+          <td class="align-middle">{{ bill.supplier }}</td>
+          <td class="align-middle">{{ bill.clinic }}</td>
+          <td class="align-middle">{{ bill.engineer }}</td>
+          <td class="align-middle d-none d-sm-table-cell">{{ bill.supply }}</td>
           {% if bill.supply == 'Нет' %}
-            <td class="d-none d-md-table-cell">не доставлено</td>
+            <td class="align-middle d-none d-md-table-cell">не доставлено</td>
           {% else %}
-            <td class="d-none d-md-table-cell">{{ bill.supply_date }}</td>
+            <td class="align-middle d-none d-md-table-cell">{{ bill.supply_date }}</td>
           {% endif %}
         </tr>
       {% endfor %}

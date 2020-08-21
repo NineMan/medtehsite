@@ -4,10 +4,10 @@ from datetime import date
 
 class Bill(models.Model):
 
-    BOOL = {
-        ('Да', 'Получили'),
-        ('Нет', 'Ожидаем'),
-    }
+    # BOOL = {
+    #     ('Да', 'Получили'),
+    #     ('Нет', 'Ожидаем'),
+    # }
 
     product = models.CharField(max_length=200,          # Запчасть. Краткое название запчасти (товара, услуги и т.д.)
                                verbose_name='Название запчасти')
@@ -21,10 +21,10 @@ class Bill(models.Model):
     engineer = models.CharField(max_length=50,          # Техник (инженер), которому нужно отдать запчасть.
                                 verbose_name='Техник')
     # -------------------------
-    supply = models.CharField(max_length=5,             # Состояние поставки. "Да" если заказ доставлен
-                              choices=BOOL,
-                              default='Нет',
-                              verbose_name='Состояние поставки заказа')
+    # supply = models.CharField(max_length=5,             # Состояние поставки. "Да" если заказ доставлен
+    #                           choices=BOOL,
+    #                           default='Нет',
+    #                           verbose_name='Состояние поставки заказа')
     supply_date = models.DateField(blank=True,          # Дата доставки. Появляется если есть поставка.
                                    auto_now=True,
                                    editable=False,

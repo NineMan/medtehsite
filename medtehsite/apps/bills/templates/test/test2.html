@@ -39,79 +39,57 @@
           <div class="py-2 pl-4 ml-4 border border-dark d-none d-sm-block"><h4>Главное по заказу</h4></div>
           <div class="pt-2           border border-dark d-sm-none d-block"><h5>Главное по заказу</h5></div>
 
+          <form method="post" class="post-form">{% csrf_token %}
+
           <div class="row px-0 mb-2 border border-dark">
-<!--
-            <div class="col-sm-3 py-2         border border-dark ">Что заказали:</div>
-            <div class="col-sm   py-0 my-auto border border-dark">{{ form.product }}</div>
--->
-
-            <div class="col-sm-3 py-2 d-none d-sm-block border border-dark">Что заказали:</div>
-            <div class="col-sm-3 py-0 d-sm-none d-block border border-dark">Что заказали:</div>
-            <div class="col-sm   py-0 my-auto d-none d-sm-block border border-dark">{{ form.product }}</div>
-            <div class="col-sm   py-0 my-auto d-sm-none d-block border border-dark">{{ form.product }}</div>
-
+            <div class="col-sm-3 py-2         d-none d-sm-block">Что заказали:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Что заказали:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.product }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.product }}</div>
           </div>
 
           <div class="row px-0 mb-2 border border-dark">
-            <div class="col-sm-3 py-2 d-none d-sm-block">Поставщик:</div>
-            <div class="col-sm-3 py-0 d-sm-none d-block">Поставщик:</div>
+            <div class="col-sm-3 py-2         d-none d-sm-block">Поставщик:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Поставщик:</div>
             <div class="col-sm   py-0 my-auto d-none d-sm-block font-weight-bold">{{ form.supplier }}</div>
             <div class="col-sm   py-0 my-auto d-sm-none d-block font-weight-bold">{{ form.supplier }}</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-3 py-2 d-none d-sm-block">Больница:</div>
-            <div class="col-sm-3 py-0 d-sm-none d-block">Больница:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.clinic }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.clinic }}</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Больница:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Больница:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block font-weight-bold">{{ form.clinic }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block font-weight-bold">{{ form.clinic }}</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-3 py-2 d-none d-sm-block">Аппарат:</div>
-            <div class="col-sm-3 py-0 d-sm-none d-block">Аппарат:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.device|default:'-' }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.device|default:'-' }}</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Аппарат:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Аппарат:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block font-weight-bold">{{ form.device }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block font-weight-bold">{{ form.device }}</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-3 py-2 d-none d-sm-block">Техник:</div>
-            <div class="col-sm-3 py-0 d-sm-none d-block">Техник:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.engineer }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.engineer }}</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Техник:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Техник:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.engineer }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.engineer }}</div>
           </div>
 
-          {% if bill.supply == 'Да' %}
-            <div class="row px-0 mb-2">
-              <div class="col-sm-3      py-2 d-none d-sm-block">Статус:</div>
-              <div class="col-sm-3      py-0 d-sm-none d-block">Статус:</div>
-              <div class="col-sm-3 col-5 px-4 py-2 d-none d-sm-block font-weight-bold bg-success text-white ml-n2">Получили</div>
-              <div class="col-sm-3 col-5 px-4 py-0 d-sm-none d-block font-weight-bold bg-success text-white ml-n2">Получили</div>
-            </div>
-            <div class="row px-0 mb-2">
-              <div class="col-sm-3 py-2 d-none d-sm-block">Дата поставки:</div>
-              <div class="col-sm-3 py-0 d-sm-none d-block">Дата поставки:</div>
-              <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.supply_date }}</div>
-              <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.supply_date }}</div>
-            </div>
-          {% else %}
-            <div class="row px-0 mb-2">
-              <div class="col-sm-3 py-2 d-none d-sm-block">Статус:</div>
-              <div class="col-sm-3 py-0 d-sm-none d-block">Статус:</div>
-              <div class="col-sm-3 py-2 d-none d-sm-block font-weight-bold">Ожидаем</div>
-              <div class="col-sm-3 py-0 d-sm-none d-block font-weight-bold">Ожидаем</div>
-            </div>
-            <div class="row px-0 mb-2">
-              {% if user.is_authenticated %}
-              <div class="col-sm-6 d-flex justify-content-center">
-                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
-              </div>
-              {% else %}
-              <div class="col-sm-6 d-flex justify-content-center">
-                <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'login' %}'">Товар получили</button>
-             </div>
-              {% endif %}
-            </div>
-          {% endif %}
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Статус:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Статус:</div>
+            <div class="col-sm-3 py-0 my-auto d-none d-sm-block">{{ form.supply }}</div>
+            <div class="col-sm-3 py-0 my-auto d-sm-none d-block">{{ form.supply }}</div>
+          </div>
+
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дата поставки:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дата поставки:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.supply_date }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.supply_date }}</div>
+          </div>
+
         </div>
       </div>
 
@@ -125,52 +103,52 @@
           <div class="py-2                      border border-dark   px-0 mx-0 d-sm-none d-block"><h5>Информация по счёту</h5></div>
 
           <div class="row px-0 mb-2 border border-dark">
-            <div class="col-sm-4 py-2 d-none d-sm-block ">№ счёта:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">№ счёта:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
+            <div class="col-sm-3 py-2         d-none d-sm-block">№ счёта:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">№ счёта:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.bill_number }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.bill_number }}</div>
           </div>
 
           <div class="row px-0 mb-2 border border-dark">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Дата счёта:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Дата счёта:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
+            <div class="col-sm-3 py-2         d-none d-sm-block">Дата счёта:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Дата счёта:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.bill_date }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.bill_date }}</div>
           </div>
 
           <div class="row px-0 mb-2 border border-dark">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Сумма счёта:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Сумма счёта:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
+            <div class="col-sm-3 py-2         d-none d-sm-block">Сумма счёта:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Сумма счёта:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.bill_sum }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.bill_sum }}</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Дата создания заказа:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Дата создания заказа:</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дата заказа:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дата заказа:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.order_date }}</div>
             <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.order_date }}</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Дней как заказали:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Дней как заказали:</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дней заказан:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дней заказан:</div>
             <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
             <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Кто запросил счёт:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Кто запросил счёт:</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Запросил счёт:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Запросил счёт:</div>
             <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
             <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
-          <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Комментарий:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Комментарий:</div>
-            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
-            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
+          <div class="row px-0 mb-2 border border-dark">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Комментарий:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Комментарий:</div>
+            <div class="col-sm   py-2 my-auto d-none d-sm-block">{{ form.comment }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.comment }}</div>
           </div>
 
         </div>

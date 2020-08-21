@@ -2,134 +2,213 @@
 {% load static %}
 
 {% block title %}
-  Новый заказ
+  Редактирование заказа
 {% endblock %}
 
 {% block link %}
-  <link rel="stylesheet" href="{% static 'bills/bill_detail.css' %}">
+  <link rel="stylesheet" href="{% static 'bills/css/bill_detail.css' %}">
 {% endblock %}
 
 {% block content %}
 
-  <!-- Оглавление -->
-  <div class="d-flex flex-row pt-3 border border-dark">
-    <div class="d-flex col justify-content-center">
-      <h3 align="center">Новый заказ запчасти</h3>
+  <!-- Главный контейнер -->
+  <div class="container-fluid">
+
+    <!-- Оглавление -->
+    <div class="row d-flex justify-content-center">
+      <div class="d-flex p-2 justify-content-center ">
+        <h3 class="d-none d-sm-block" align="center">Редактирование заказа</h3>
+        <h4 class="d-sm-none d-block" align="center">Редактирование заказа</h4>
+      </div>
     </div>
-  </div>
 
-  <!-- Кнопка возврата -->
-  <div class="d-flex flex-row pt-3 border border-dark">
-    <div class="d-flex col justify-content-center">
-      <button type="button" class="btn btn-primary" onclick="window.location.href='/'">На главную</button>
+    <!-- Кнопки навигации верхние-->
+    <div class="d-flex row">
+      <!-- Кнопка возврата в главное меню для обеих версий-->
+      <div class="d-flex col-md justify-content-center">
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
+      </div>
     </div>
-  </div>
 
-  <!-- Ряд - нижняя половина -->
-  <div class="d-flex flex-row bg-dark">
+    <!-- Основной ряд в котором две колонки-->
+    <div class="d-flex row">
 
-    <!-- Первая (левая) колонка -->
-    <div class="d-flex col bg-success justify-content-center">
+      <!-- Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
+      <div class="d-flex col-md">
+        <div class="container">
+          <div class="py-2 pl-4 ml-4 d-none d-sm-block"><h4>Главное по заказу</h4></div>
+          <div class="pt-2           d-sm-none d-block"><h5>Главное по заказу</h5></div>
 
-      <div class="container bg-primary">
+          <form method="post" class="post-form">{% csrf_token %}
 
-        <div class="row bg-danger">
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2         d-none d-sm-block">Что заказали:</div>
+              <div class="col-sm-3 py-0         d-sm-none d-block">Что заказали:</div>
+              <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.product }}</div>
+              <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.product }}</div>
+            </div>
 
-          <!-- Колонка/Ряд с оглавлением левой колонки -->
-          <div class="d-flex col justify-content-left pl-5 ml-5 "><h4>Главное по заказу</h4></div>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2         d-none d-sm-block">Поставщик:</div>
+              <div class="col-sm-3 py-0         d-sm-none d-block">Поставщик:</div>
+              <div class="col-sm   py-0 my-auto d-none d-sm-block font-weight-bold">{{ form.supplier }}</div>
+              <div class="col-sm   py-0 my-auto d-sm-none d-block font-weight-bold">{{ form.supplier }}</div>
+            </div>
 
-          <!-- Разрыв -->
-          <div class="w-100"></div>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2         d-none d-sm-block">Больница:</div>
+              <div class="col-sm-3 py-0         d-sm-none d-block">Больница:</div>
+              <div class="col-sm   py-0 my-auto d-none d-sm-block font-weight-bold">{{ form.clinic }}</div>
+              <div class="col-sm   py-0 my-auto d-sm-none d-block font-weight-bold">{{ form.clinic }}</div>
+            </div>
 
-          <!-- Колонка/ряд с формой -->
-          <div class="col border border-dark">
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2         d-none d-sm-block">Аппарат:</div>
+              <div class="col-sm-3 py-0         d-sm-none d-block">Аппарат:</div>
+              <div class="col-sm   py-0 my-auto d-none d-sm-block font-weight-bold">{{ form.device }}</div>
+              <div class="col-sm   py-0 my-auto d-sm-none d-block font-weight-bold">{{ form.device }}</div>
+            </div>
 
-            <form method="post" class="post-form">{% csrf_token %}
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2         d-none d-sm-block">Техник:</div>
+              <div class="col-sm-3 py-0         d-sm-none d-block">Техник:</div>
+              <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.engineer }}</div>
+              <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.engineer }}</div>
+            </div>
 
-              <table class="table table-borderless">
-                <tbody>
-                  <tr>
-                    <td class="font-weight-bold" width="24%">Что заказали:</td>
-                    <td class="pt-1">{{ form.product }}</td>
-                  </tr><tr>
-                    <td class="font-weight-bold">Поставщик:</td>
-                    <td class="pt-1">{{ form.supplier }}</td>
-                  </tr><tr>
-                    <td class="font-weight-bold">Больница:</td>
-                    <td class="pt-1">{{ form.clinic }}</td>
-                  </tr><tr>
-                    <td class="font-weight-bold">Аппарат:</td>
-                    <td class="pt-1">{{ form.device }}</td>
-                  </tr><tr>
-                    <td class="font-weight-bold">Техник:</td>
-                    <td class="pt-1">{{ form.engineer }}</td>
-                  </tr><tr>
-                    <td class="font-weight-bold">Статус:</td>
-                    <td class="pt-1">{{ form.supply }}</td>
-                  </tr><tr>
-                    <td class="font-weight-bold">Дата доставки:</td>
-                    <td>
-                      {% if bill.supply_date %}{{ bill.supply_date }}
-                      {% else %}не доставлено
-                      {% endif %}</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2         d-none d-sm-block">Статус:</div>
+              <div class="col-sm-3 py-0         d-sm-none d-block">Статус:</div>
+              <div class="col-sm-3 py-0 my-auto d-none d-sm-block">{{ form.supply }}</div>
+              <div class="col-sm-3 py-0 my-auto d-sm-none d-block">{{ form.supply }}</div>
+            </div>
 
-            <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'bills:bill_detail' bill.pk %}'">Назад</button>
-            <input class="btn btn-primary" type="submit" value="Сохранить">
-            </form>
+            <div class="row px-0 mb-2">
+              <div class="col-sm-3 py-2 d-none d-sm-block">Дата поставки:</div>
+              <div class="col-sm-3 py-0 d-sm-none d-block">Дата поставки:</div>
+              {% if bill.supply_date %}{{ bill.supply_date }}
+              <!--
+                <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.supply_date }}</div>
+                <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.supply_date }}</div>
+              -->
+              {% else %}не доставлено
+              {% endif %}
+            </div>
 
+          <button type="button" class="btn btn-primary" onclick="window.location.href = '{% url 'bills:bill_detail' bill.pk %}'">Назад</button>
+{#          <input type="hidden" name="supply" value="Да">#}
+          <input class="btn btn-primary" type="submit" value="Сохранить">
+
+
+        </div>
+      </div>
+
+      <!-- Разделитель, появляющийся на "md" экране -->
+      <div class="d-md-none d-block "><p></p></div>
+
+      <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
+      <div class="d-flex col-md">
+        <div class="container">
+          <div class="py-2 justify-content-left pl-4 ml-4 d-none d-sm-block"><h4>Информация по счёту</h4></div>
+          <div class="py-2                      px-0 mx-0 d-sm-none d-block"><h5>Информация по счёту</h5></div>
+          <!--
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2         d-none d-sm-block">№ счёта:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">№ счёта:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.bill_number }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.bill_number }}</div>
           </div>
 
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Дата счёта:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Дата счёта:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.bill_date }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.bill_date }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Сумма счёта:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Сумма счёта:</div>
+            <div class="col-sm   py-0 my-auto d-none d-sm-block">{{ form.bill_sum }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.bill_sum }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дата заказа:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дата заказа:</div>
+            <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.order_date }}</div>
+            <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.order_date }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дней заказан:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дней заказан:</div>
+            <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
+            <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2 d-none d-sm-block">Запросил счёт:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Запросил счёт:</div>
+            <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
+            <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2         d-none d-sm-block">Комментарий:</div>
+            <div class="col-sm-3 py-0         d-sm-none d-block">Комментарий:</div>
+            <div class="col-sm   py-2 my-auto d-none d-sm-block">{{ form.comment }}</div>
+            <div class="col-sm   py-0 my-auto d-sm-none d-block">{{ form.comment }}</div>
+          </div>
+          -->
         </div>
       </div>
     </div>
 
-    <!-- Вторая (правая) колонка -->
-    <div class="d-flex col bg-secondary justify-content-center">
-
-      <div class="container">
-
-        <!-- Основной ряд -->
-        <div class="row">
-
-          <!-- Колонка/Ряд с оглавлением левой колонки -->
-          <div class="d-flex col justify-content-left pl-5 ml-5">
-            <h4>Информация по счёту</h4>
-          </div>
-
-          <!-- Разрыв -->
-          <div class="w-100"></div>
-
-          <!-- Колонка/Ряд с формой -->
-          <div class="col">
-            <table class="table table-borderless">
-              <tbody>
-
-                <tr>
-                  <td class="font-weight-bold border border-dark" width="32%">№ счёта:</td>
-                  <td class="border border-dark">{{ form.bill_number }}</td></tr>
-                <tr>
-                  <td class=" border border-darkfont-weight-bold">Дата счёта:</td>
-                  <td class=" border border-dark">{{ form.bill_date }}</td>
-                  <td class=" border border-dark">Вчера</td>
-                  <td class=" border border-dark">Сегодня</td>
-                </tr>
-
-                <tr><td class="font-weight-bold">Сумма счёта:</td><td>{{ form.bill_sum }}</td></tr>
-                <tr><td class="font-weight-bold">Дата создания заказа:</td><td>{{ bill.order_date }}</td></tr>
-                <tr><td class="font-weight-bold">Кто запросил счёт:</td><td>не используется</td></tr>
-                <tr><td class="font-weight-bold">Комментарий:</td><td>{{ form.comment }}</td></tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
+    <!-- Кнопки навигации нижние -->
+    <div class="d-flex row">
+      <!-- Кнопка возврата в главное меню для мобильной версии-->
+      <div class="d-flex col-md d-md-none d-block justify-content-center">
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
       </div>
+      <!-- Разделитель, появляющийся на "md" экране -->
+      <div class="col d-md-none d-block my-1"></div>
     </div>
 
   </div>
+
+  <!-- Modal - Модальное окно подтверждения поставки -->
+<!--
+  <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenteredLabel">Товар получен</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Подтвердите получение товара
+        </div>
+
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col pl-n5">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+            </div>
+            <div class="col bg-light">
+                <form action="{{ bill.pk }}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="supply" value="yes">
+                  <input  class="btn btn-success" type="submit" value="Получили">
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+-->
 
 {% endblock %}
-

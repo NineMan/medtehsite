@@ -134,50 +134,50 @@
           <div class="py-2           d-sm-none d-block"><h5>Информация по счёту</h5></div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">№ счёта:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">№ счёта:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">№ счёта:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">№ счёта:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
             <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Дата счёта:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Дата счёта:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дата счёта:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дата счёта:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
             <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Сумма счёта:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Сумма счёта:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">Сумма счёта:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Сумма счёта:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
             <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
           </div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Дата создания заказа:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Дата создания заказа:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дата заказа:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дата заказа:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.order_date }}</div>
             <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.order_date }}</div>
           </div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Дней как заказали:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Дней как заказали:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">Дней заказан:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Дней заказан:</div>
             <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
             <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Кто запросил счёт:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Кто запросил счёт:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">Запросил счёт:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Запросил счёт:</div>
             <div class="col-sm   py-2 d-none d-sm-block">не используется</div>
             <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
           <div class="row px-0 mb-2">
-            <div class="col-sm-4 py-2 d-none d-sm-block">Комментарий:</div>
-            <div class="col-sm-4 py-0 d-sm-none d-block">Комментарий:</div>
+            <div class="col-sm-3 py-2 d-none d-sm-block">Комментарий:</div>
+            <div class="col-sm-3 py-0 d-sm-none d-block">Комментарий:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
             <div class="col-sm   py-0 d-sm-none d-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
           </div>

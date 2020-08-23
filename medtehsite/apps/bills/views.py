@@ -1,5 +1,6 @@
 ﻿from django.http import Http404
 from django.http import HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.utils import timezone
 
@@ -45,6 +46,7 @@ def bill_detail(request, pk):
     return render(request, 'bills/bill_detail.html', {'bill': bill})
 
 
+@login_required
 def bill_new(request):
 
     if request.method == 'POST':
@@ -71,6 +73,7 @@ def bill_new(request):
     return render(request, 'bills/bill_new.html', {'form': form})
 
 
+@login_required
 def bill_edit(request, pk):
 
     bill = Bill.objects.get(pk=pk)

@@ -74,52 +74,34 @@ def bill_new(request):
 def bill_edit(request, pk):
 
     bill = Bill.objects.get(pk=pk)
-    print('bill_product =', bill.product)
     if request.method == 'POST':
         form = BillForm(request.POST, instance=bill)
-        print('form_new=', form.instance)
-        print('================================================')
+
+        # Проверка заказа: "Заказ доставлен?"   (лучше перенести в бизнес-логику)
         if form.instance.supply == "Да":
-            print('--- supply == Да ---')
             bill.supply_date = timezone.now()
         elif form.instance.supply == "Нет":
-            print('--- supply == Нет ---')
             bill.supply_date = None
-        print('================================================1')
-        for item in form:
-            print(item)
-        print('================================================1')
-        print('product =', form.instance.product)
-        print('supplier =', form.instance.supplier)
-        print('clinic =', form.instance.clinic)
-        print('device =', form.instance.device)
-        print('engineer =', form.instance.engineer)
-        print('supply =', form.instance.supply)
-        print('================================================2')
 
+        # Проверка формы
         if form.is_valid():
-            # bill = form.save()
-            print('form = ', form.instance.product)
-            bill.product = form.instance.product
-            print('bill = ', bill.product)
-            bill.save(update_fields=['product'])
-            print('--- form is valid ---')
+            bill = form.save()
+            bill.save()
             return redirect('bills:bill_detail', pk=bill.pk)
-        print('--- form not valid ---')
-        print(form.errors.as_data())
+        else:
+            pass                                                        # Прописать на случай невалидности формы.
+
     else:
-        # print('===')
-        # print(bill)
-        # print('===')
         form = BillForm(instance=bill)
     print('In bill edit')
-    print('===')
 
     return render(request, 'bills/bill_edit.html', {'form': form, 'bill': bill})
 
 
 def test(request):
-    return render(request, 'test/test.html', )
+    bill = Bill.objects.get(pk=3)
+    form = BillForm(instance=bill)
+    return render(request, 'test/test.html', {'form': form, 'bill': bill})
 
 
 def test2(request):

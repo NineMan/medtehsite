@@ -23,32 +23,195 @@
     </div>
 
     <!-- Кнопки навигации верхние-->
-    <div class="d-flex row">
-      <!-- Кнопка "редактировать" для полной версии -->
-      <div class="d-flex col-md justify-content-center">
-        {% if user.is_authenticated %}
-          <button type="button" class="btn btn-success mr-1 d-none d-md-block" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
-          <!-- <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button> -->
-        {% else %}
-          <button type="button" class="btn btn-secondary mr-1 d-none d-md-block" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
-          <!-- <button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button> -->
-        {% endif %}
-      </div>
+    <div class="d-flex row mb-2">
       <!-- Три кнопки навигации для обеих версий-->
       <div class="d-flex col-md justify-content-center">
-        <button type="button" class="btn btn-primary" style="width: 47px" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
+        <button type="button" class="btn btn-primary" style="width: 3rem" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
+        <button type="button" class="btn btn-primary mx-2" onclick="window.location.href='/'">На главную</button>
+        <button type="button" class="btn btn-primary" style="width: 3rem" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
       </div>
-      <!-- Вспомогательный ряд -->
-      <div class="col-sm"></div>
     </div>
 
     <!-- Основной ряд в котором две колонки-->
     <div class="d-flex row">
 
       <!-- Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
-      <div class="d-flex col-md">
+      <div class="d-flex col-md mb-2">
+        <div class="container">
+          <div class="d-flex py-2 pl-4 ml-4"><h4 class="text-center">Главное по заказу</h4></div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2">Что заказали:</div>
+            <div class="col-sm   py-2 font-weight-bold">{{ bill.product }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2">Поставщик:</div>
+            <div class="col-sm   py-2 font-weight-bold">{{ bill.supplier }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2">Больница:</div>
+            <div class="col-sm   py-2 font-weight-bold">{{ bill.clinic }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2">Аппарат:</div>
+            <div class="col-sm   py-2 font-weight-bold">{{ bill.device|default:'-' }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-sm-3 py-2">Техник:</div>
+            <div class="col      py-2 font-weight-bold">{{ bill.engineer }}</div>
+          </div>
+
+          {% if bill.supply == 'Да' %}
+            <div class="row px-0 mb-2">
+              <div class="d-flex col-flex col-6 col-sm-3 py-2">Статус:</div>
+              <div class="d-flex col-flex px-3           py-2 font-weight-bold bg-success text-white">Получили</div>
+            </div>
+            <div class="row px-0 mb-2">
+              <div class="d-flex col-flex col-6 col-sm-3 py-2">Дата поставки:</div>
+              <div class="d-flex col-flex px-3           py-2 font-weight-bold">{{ bill.supply_date }}</div>
+            </div>
+          {% else %}
+            <div class="row px-0 mb-2">
+              <div class="col-6 col-sm-3 py-2">Статус:</div>
+              <div class="col            py-2 font-weight-bold">Ожидаем</div>
+            </div>
+            <div class="row px-0 mb-2">
+              {% if user.is_authenticated %}
+              <div class="col-sm-6 d-flex justify-content-center">
+                <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
+              </div>
+              {% else %}
+              <div class="col-sm-6 d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'login' %}'">Товар получили</button>
+             </div>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
+      <div class="d-flex col-md mb-2">
+        <div class="container">
+          <div class="d-flex py-2 pl-4 ml-4"><h4 class="text-center">Информация по счёту</h4></div>
+
+          <div class="row px-0 mb-2">
+            <div class="d-flex col-flex col-6 col-xl-3 col-lg-4 col-sm-5 py-2">№ счёта:</div>
+            <div class="d-flex col-flex px-3 py-2 font-weight-bold">{{ bill.bill_number|default:'-' }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="d-flex col-flex col-6 col-xl-3 col-lg-4 col-sm-5 py-2">Дата счёта:</div>
+            <div class="d-flex col-flex px-3            py-2 font-weight-bold">{{ bill.bill_date|default_if_none:'-' }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="d-flex col-flex col-6 col-xl-3 col-lg-4 col-sm-5 py-2">Сумма счёта:</div>
+            <div class="d-flex col-flex px-3             py-2 font-weight-bold">{{ bill.bill_sum|default_if_none:'-' }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="d-flex col-flex col-6 col-xl-3 col-lg-4 col-sm-5 py-2">Дата заказа:</div>
+            <div class="d-flex col-flex px-3                             py-2 font-weight-bold">{{ bill.order_date }}</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="d-flex col-flex col-6 col-xl-3 col-lg-4 col-sm-5 py-2">Дней заказан:</div>
+            <div class="d-flex col-flex px-3                             py-2 font-weight-bold">не используется</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="d-flex col-flex col-6 col-xl-3 col-lg-4 col-sm-5 py-2">Запросил счёт:</div>
+            <div class="d-flex col-flex px-3                             py-2 font-weight-bold">не используется</div>
+          </div>
+
+          <div class="row px-0 mb-2">
+            <div class="col-xl-3 col-lg-4 py-2">Комментарий:</div>
+            <div class="col-lg            py-2 font-weight-bold">{{ bill.comment|default:'нет' }}</div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Кнопки навигации нижние -->
+    <div class="d-flex row">
+      <!-- Кнопка "редактировать" для мобильной версии -->
+      <div class="d-flex col-md justify-content-center mb-2">
+        {% if user.is_authenticated %}
+          <button type="button" class="btn btn-success mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='#'" disabled>Удалить</button>
+        {% else %}
+          <button type="button" class="btn btn-secondary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
+          <button type="button" class="btn btn-secondary" onclick="window.location.href='#'" disabled>Удалить</button>
+        {% endif %}
+      </div>
+      <!-- Три кнопки навигации для мобильной версии -->
+      <div class="d-flex col-md d-md-none d-block justify-content-center mb-2">
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
+        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Modal - Модальное окно подтверждения поставки -->
+  <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenteredLabel">Товар получен</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          Подтвердите получение товара
+        </div>
+
+        <div class="modal-footer">
+          <div class="row">
+            <div class="col pl-n5">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
+            </div>
+            <div class="col bg-light">
+                <form action="{{ bill.pk }}" method="post">
+                  {% csrf_token %}
+                  <input type="hidden" name="supply" value="yes">
+                  <input  class="btn btn-success" type="submit" value="Получили">
+                </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Основной ряд в котором две колонки-->
+    <!-- "Старый" вариант с двойными строчками -->
+    <div class="d-flex row border border-dark">
+
+      <!-- Первая колонка - ГЛАВНОЕ ПО ЗАКАЗУ -->
+      <div class="d-flex col-md mb-2 border border-dark">
         <div class="container">
           <div class="py-2 pl-4 ml-4 d-none d-sm-block"><h4>Главное по заказу</h4></div>
           <div class="pt-2           d-sm-none d-block"><h5>Главное по заказу</h5></div>
@@ -95,7 +258,7 @@
               <div class="col-sm-3 col-5 px-4 py-2 d-none d-sm-block font-weight-bold bg-success text-white ml-n2">Получили</div>
               <div class="col-sm-3 col-5 px-4 py-0 d-sm-none d-block font-weight-bold bg-success text-white ml-n2">Получили</div>
             </div>
-            <div class="row px-0 mb-2">
+            <div class="row px-0 mb-2 border border-dark">
               <div class="col-sm-3 py-2 d-none d-sm-block">Дата поставки:</div>
               <div class="col-sm-3 py-0 d-sm-none d-block">Дата поставки:</div>
               <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.supply_date }}</div>
@@ -109,7 +272,7 @@
               <div class="col-sm-3 py-0 d-sm-none d-block font-weight-bold">Ожидаем</div>
             </div>
 
-            <div class="row px-0 mb-2">
+            <div class="row px-0 mb-2 border border-dark">
               {% if user.is_authenticated %}
               <div class="col-sm-6 d-flex justify-content-center">
                 <button type="button" class="btn btn-success" data-toggle="modal" data-target="#exampleModalCentered">Товар получили</button>
@@ -124,11 +287,8 @@
         </div>
       </div>
 
-      <!-- Разделитель, появляющийся на "md" экране -->
-      <div class="d-md-none d-block "><p></p></div>
-
       <!-- Вторая колонка - ИНФОРМАЦИЯ ПО СЧЁТУ -->
-      <div class="d-flex col-md">
+      <div class="d-flex col-md mb-2 border border-dark">
         <div class="container">
           <div class="py-2 pl-4 ml-4 d-none d-sm-block"><h4>Информация по счёту</h4></div>
           <div class="py-2           d-sm-none d-block"><h5>Информация по счёту</h5></div>
@@ -175,7 +335,7 @@
             <div class="col-sm   py-0 d-sm-none d-block">не используется</div>
           </div>
 
-          <div class="row px-0 mb-2">
+          <div class="row px-0 mb-2 border border-dark">
             <div class="col-sm-3 py-2 d-none d-sm-block">Комментарий:</div>
             <div class="col-sm-3 py-0 d-sm-none d-block">Комментарий:</div>
             <div class="col-sm   py-2 d-none d-sm-block font-weight-bold">{{ bill.comment|default:'нет' }}</div>
@@ -185,63 +345,3 @@
         </div>
       </div>
     </div>
-
-    <!-- Кнопки навигации нижние -->
-    <div class="d-flex row">
-      <!-- Кнопка "редактировать" для мобильной версии -->
-      <div class="d-flex col-md d-md-none d-block justify-content-center">
-        {% if user.is_authenticated %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'bills:bill_edit' bill.pk %}'">Редактировать</button>
-          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
-        {% else %}
-          <button type="button" class="btn btn-primary mr-1" onclick="window.location.href='{% url 'login' %}'">Редактировать</button>
-          <!--<button type="button" class="btn btn-primary" onclick="window.location.href='#'" disabled>Удалить</button>-->
-        {% endif %}
-      </div>
-      <!-- Разделитель, появляющийся на "md" экране -->
-      <div class="col d-md-none d-block my-1"></div>
-      <!-- Три кнопки навигации (нужно только для мобильной версии) -->
-      <div class="d-flex col-md d-md-none d-block justify-content-center">
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
-      </div>
-      <!-- Разделитель, появляющийся на "md" экране -->
-      <div class="col d-md-none d-block my-1"></div>
-    </div>
-
-  </div>
-
-  <!-- Modal - Модальное окно подтверждения поставки -->
-  <div class="modal" id="exampleModalCentered" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenteredLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalCenteredLabel">Товар получен</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          Подтвердите получение товара
-        </div>
-
-        <div class="modal-footer">
-          <div class="row">
-            <div class="col pl-n5">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
-            </div>
-            <div class="col bg-light">
-                <form action="{{ bill.pk }}" method="post">
-                  {% csrf_token %}
-                  <input type="hidden" name="supply" value="yes">
-                  <input  class="btn btn-success" type="submit" value="Получили">
-                </form>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-{% endblock %}

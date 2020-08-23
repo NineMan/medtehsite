@@ -2,14 +2,76 @@
 {% load static %}
 
 {% block title %}
-  Счета на з/части
-{% endblock %}
-
-{% block link %}
-    <link rel="stylesheet" href="{% static 'bills/css/bill_list.css' %}">
+  test
 {% endblock %}
 
 {% block content %}
+
+{#  <div class="container">#}
+{#    <div class="form-group">#}
+
+
+
+
+  <div class="container">
+
+    <form>
+      <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      <div class="form-group">
+        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect1">Example select</label>
+        <select class="form-control" id="exampleFormControlSelect1">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlSelect2">Example multiple select</label>
+        <select multiple class="form-control" id="exampleFormControlSelect2">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Example textarea</label>
+        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+      </div>
+    </form>
+
+  </div>
+
+
+<script>
+
+  function discharge(){
+  $('input').val(String($('input').val().replace(/[^0-9.]/g,'')).replace(/\B(?=(\d{3})+(?!\d))/g, " "));
+  }
+
+  discharge();
+  $('input').keyup(function(){
+  discharge();
+  });
+
+</script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <input value="12345847">
+
+
+{% endblock %}
+
+
+
+
+
 
 
   <!-- Навигационная панель -->
@@ -79,12 +141,8 @@
 
     </div>
   </nav>
-  <!-- /Навигационная панель -->
 
-
-
-
-    <!-- Основная таблица -->
+  <!-- Основная таблица -->
   <table class="table table-hover table-sm pt-5 table-bordered">
     <thead class="thead-dark">
       <tr>
@@ -98,12 +156,6 @@
       </tr>
     </thead>
   </table>
-
-
-
-
-{% endblock %}
-
 
 
 

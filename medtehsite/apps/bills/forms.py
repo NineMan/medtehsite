@@ -23,11 +23,14 @@ class BillForm(forms.ModelForm):
             'comment'
         )
         widgets = {
-            'product': forms.TextInput(attrs={'size': '36px'}),
-            'supplier': forms.TextInput(attrs={'size': '36px'}),
-            'clinic': forms.TextInput(attrs={'size': '36px'}),
-            'device': forms.TextInput(attrs={'size': '36px'}),
-            'engineer': forms.TextInput(attrs={'size': '36px'}),
-            'bill_date': DateInput(),
-            'comment': forms.Textarea(attrs={'rows': 3, 'cols': 40, 'margin': '-50px'}),
+            'product': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите название запчасти'}),
+            'supplier': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Введите название поставщика'}),
+            'clinic': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Название ЛПУ куда пойдёт запчасть'}),
+            'device': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Для какого апарата'}),
+            'engineer': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Какому технику отдать запчасть'}),
+            'supply': forms.Select(attrs={'class': 'form-control'}),
+            'bill_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер счёта'}),
+            'bill_date': DateInput(attrs={'class': 'form-control'}),
+            'bill_sum': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': ''}),
+            'comment': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Комментарий', 'rows': 3}),
         }

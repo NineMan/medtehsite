@@ -11,49 +11,31 @@
 
 {% block content %}
 
+  <div class="container">
     <!-- Оглавление -->
-    <div class="row d-flex justify-content-center">
-      <div class="d-flex p-2 justify-content-center ">
-        <h3 class="d-none d-sm-block" align="center">Подробности заказа</h3>
-        <h4 class="d-sm-none d-block" align="center">Подробности заказа</h4>
-      </div>
+    <div class="d-flex row justify-content-center">
+        <h3 class="p-2 d-none d-sm-block text-center">Подробности заказа</h3>
+        <h4 class="p-2 d-sm-none d-block text-center">Подробности заказа</h4>
     </div>
 
-  <!-- Три кнопки навигации для обеих версий-->
-  <div class="d-flex col-md justify-content-center">
-    <button type="button" class="btn btn-primary";" disabled><<</button>
-    <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
-    <button type="button" class="btn btn-primary";" disabled>>></button>
-  </div>
-    <!-- Три кнопки навигации -->
-<!--
-    <div class="d-flex flex-row pt-3">
-      <div class="col"></div>
-      <div class="d-flex col-sm-6 justify-content-center">
-        <button type="button" class="btn btn-primary";" disabled><<</button>
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
-        <button type="button" class="btn btn-primary";" disabled>>></button>
-      </div>
-      <div class="col"></div>
+    <!-- Три кнопки навигации для обеих версий-->
+    <div class="d-flex row mb-2 justify-content-center">
+      <button type="button" class="btn btn-primary" style="width: 3rem" disabled><<</button>
+      <button type="button" class="btn btn-primary mx-2" style="width: 7rem" onclick="window.location.href='/'">На главную</button>
+      <button type="button" class="btn btn-primary" style="width: 3rem" disabled>>></button>
     </div>
--->
+
     <!-- Кнопка "вернуться" -->
-    <div class="d-flex flex-row pt-3">
-      <div class="d-flex col"></div>
-        <div class="d-flex col justify-content-center">
-          <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ pk }}';">Вернуться</button>
-        </div>
-      <div class="d-flex col">
-      </div>
+    <div class="d-flex row mb-2 justify-content-center">
+        <button type="button" class="btn btn-primary" style="width: 7rem" onclick="window.location.href = '{{ pk }}';">Вернуться</button>
     </div>
 
     <!-- Заказа нет -->
-    <div class="row d-flex justify-content-center">
-      <div class="d-flex p-2 justify-content-center ">
-        <h3 class="d-none d-sm-block" align="center">Такого заказа нет</h3>
-        <h4 class="d-sm-none d-block" align="center">Такого заказа нет</h4>
-      </div>
+    <div class="d-flex row justify-content-center">
+      <h3 class="p-2 d-none d-sm-block text-center">Такого заказа нет</h3>
+      <h4 class="p-2 d-sm-none d-block text-center">Такого заказа нет</h4>
     </div>
+  </div>
 
 
 {% endblock %}

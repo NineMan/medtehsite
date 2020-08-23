@@ -79,6 +79,11 @@
               {% endif %}
             </div>
 
+            <!-- Комментарий -->
+            <div class="row mx-0 px-3">
+              <p>* - поля обязательные к заполнению</p>
+            </div>
+
         </div>
       </div>
 
@@ -127,16 +132,12 @@
 
     </div>
 
-    <!-- Комментарий -->
-    <div class="row mx-0 px-3">
-      <p>* - поля обязательные к заполнению</p>
-    </div>
+
     <!-- Кнопки подтверждения формы -->
     <div class="d-flex row justify-content-center mb-2">
       <button type="button" class="btn btn-primary mr-2" style="width: 8rem" onclick="window.location.href = '{% url 'bills:bill_detail' bill.pk %}'">Вернуться</button>
       <input class="btn btn-primary" type="submit" style="width: 8rem" width="10rem" value="Сохранить">
     </div>
-
 
     <!-- Кнопки навигации нижние -->
     <div class="d-flex row">

@@ -1,5 +1,5 @@
 ﻿from django.db import models
-from datetime import date
+from datetime import datetime
 
 
 class Bill(models.Model):
@@ -48,6 +48,10 @@ class Bill(models.Model):
 
     def __str__(self):
         return str(self.pk) + ' ' + str(self.product) + ' для ' + str(self.clinic)
+
+    @property
+    def days_count(self):
+        return (datetime.now().date() - self.order_date).days
 
     class Meta:
 

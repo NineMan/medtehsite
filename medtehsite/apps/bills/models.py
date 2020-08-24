@@ -1,5 +1,6 @@
 ﻿from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
 
 class Bill(models.Model):
@@ -32,6 +33,10 @@ class Bill(models.Model):
                                    verbose_name='Дата прихода заказа')
     order_date = models.DateField(auto_now_add=True,    # Дата создания заказа (передачи в оплату)
                                   verbose_name='Дата создания заказа')
+    order_author = models.ForeignKey(User,
+                                     on_delete=models.SET_NULL,
+                                     blank=True,
+                                     null=True)
     bill_number = models.CharField(max_length=50,       # Номер счёта. Не обязательное
                                    blank=True,
                                    verbose_name='Номер счёта')

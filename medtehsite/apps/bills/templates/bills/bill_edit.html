@@ -73,7 +73,7 @@
               {% if bill.supply_date %}
                 <div class="col          py-2 font-weight-bold">{{ bill.supply_date }}</div>
               {% else %}
-                <div class="col          py-2 font-weight-bold">не доставлено</div>
+                <div class="col          py-2 font-weight-bold">{{ bill.order_author.last_name|default:'нет указан' }}</div>
               {% endif %}
             </div>
 

@@ -129,7 +129,8 @@ TIME_ZONE = 'Europe/Volgograd'
 
 USE_I18N = True
 
-USE_L10N = False
+# USE_L10N = False
+USE_L10N = True     # включил для использования разделителя разрядов
 
 USE_TZ = True
 
@@ -160,4 +161,10 @@ DATE_FORMAT = 'j E Y'
 LOGIN_REDIRECT_URL = 'bills:bill_list'
 LOGOUT_REDIRECT_URL = 'bills:bill_list'
 
+THOUSAND_SEPARATOR = ' '
+USE_THOUSAND_SEPARATOR = True
+NUMBER_GROUPING = 3
+
+
 django_heroku.settings(locals())
+

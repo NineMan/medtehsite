@@ -15,11 +15,9 @@
   <div class="container-fluid">
 
     <!-- Оглавление -->
-    <div class="row d-flex justify-content-center">
-      <div class="d-flex p-2 justify-content-center ">
-        <h3 class="d-none d-sm-block" align="center">Редактирование заказа</h3>
-        <h4 class="d-sm-none d-block" align="center">Редактирование заказа</h4>
-      </div>
+    <div class="d-flex row justify-content-center">
+        <h3 class="p-2 d-none d-sm-block text-center">Редактирование заказа</h3>
+        <h4 class="p-2 d-sm-none d-block text-center">Редактирование заказа</h4>
     </div>
 
     <!-- Кнопки навигации верхние-->
@@ -114,7 +112,7 @@
 
           <div class="row px-0 mb-2">
             <div class="col-6 col-sm-3 py-2">Дней заказан:</div>
-            <div class="col            py-2">не используется</div>
+            <div class="col            py-2 font-weight-bold">{{ bill.days_count }}</div>
           </div>
 
           <div class="row px-0 mb-2">

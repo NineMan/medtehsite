@@ -49,6 +49,7 @@ class Bill(models.Model):
     def __str__(self):
         return str(self.pk) + ' ' + str(self.product) + ' для ' + str(self.clinic)
 
+    # Функция расчёта дней прошедших от заказа до получения (или до текущего дня, если заказ ещё не получен)
     @property
     def days_count(self):
         if self.supply == 'Да':

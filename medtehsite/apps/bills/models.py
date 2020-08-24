@@ -51,7 +51,11 @@ class Bill(models.Model):
 
     @property
     def days_count(self):
-        return (datetime.now().date() - self.order_date).days
+        if self.supply == 'Да':
+            supply_day = self.supply_date
+        else:
+            supply_day = datetime.now().date()
+        return (supply_day - self.order_date).days
 
     class Meta:
 

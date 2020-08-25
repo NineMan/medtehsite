@@ -43,11 +43,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
-#    'medtehsite.apps.core',
-    # 'cash',
-    # 'bill',
     'bills',
+    # 'cash',                   # future
+    # 'order',                  # future
+    # 'repair',                 # future
+    # 'medtehsite.apps.core',   # future
 
     'crispy_forms',
 ]
@@ -120,9 +120,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.0/topics/i18n/
 
-LANGUAGE_CODE = 'ru-Ru'     # for django 3.1
 # LANGUAGE_CODE = 'en-us'     # default
 # LANGUAGE_CODE = 'Ru'        # for django ~2.2
+LANGUAGE_CODE = 'ru-Ru'     # for django 3.1
 
 # TIME_ZONE = 'UTC'
 TIME_ZONE = 'Europe/Volgograd'
@@ -140,12 +140,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-# EMAIL_HOST_USER = mikhail.iv85@mail.ru
-EMAIL_HOST_USER = 'mikhail.iv85'
-EMAIL_HOST_PASSWORD = 'Djkjulf1*'
-EMAIL_HOST = 'smtp.mail.ru'
-EMAIL_PORT = 465
-
 DATE_INPUT_FORMATS = [
     '%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y',  # '2006-10-25', '10/25/2006', '10/25/06'
     '%b %d %Y', '%b %d, %y',             # 'Oct 25 2006', 'Oct 25, 06'
@@ -161,10 +155,11 @@ DATE_FORMAT = 'j E Y'
 LOGIN_REDIRECT_URL = 'bills:bill_list'
 LOGOUT_REDIRECT_URL = 'bills:bill_list'
 
+# Настройка разделителя групп разрядов
 THOUSAND_SEPARATOR = ' '
 USE_THOUSAND_SEPARATOR = True
 NUMBER_GROUPING = 3
 
-
+# Настройки для деплоя на heroku
 django_heroku.settings(locals())
 

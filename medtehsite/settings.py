@@ -11,14 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
-import sys
-import django_heroku
+import sys                                                                  # Взято у Хауди Хо для структуры apps'ов
+import django_heroku                                                        # Для деплоя на Heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PROJECT_ROOT = os.path.dirname(__file__)
-sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))
+# Взято у Хауди-хо с его структурой -
+PROJECT_ROOT = os.path.dirname(__file__)                                    # Взято у Хауди Хо для структуры apps'ов
+sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))                      # Взято у Хауди Хо для структуры apps'ов
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -29,10 +30,14 @@ SECRET_KEY = 'yn3yuv!8ktv714_2^0v#m95j-6lja-v1+ys!hsdh5#_t9+k+3p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 # DEBUG = False
+# Нужно проверить !!!
+# DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))     # Взято у Андрона. Проверяет переменную окружения DJANGO_DEBUG
 
-ALLOWED_HOSTS = ['*']
-# ALLOWED_HOSTS = ['http://mt-vlg.herokuapp.com/']
-
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'http://mt-vlg.herokuapp.com/',
+]
 
 # Application definition
 
@@ -130,7 +135,7 @@ TIME_ZONE = 'Europe/Volgograd'
 USE_I18N = True
 
 # USE_L10N = False
-USE_L10N = True     # включил для использования разделителя разрядов
+USE_L10N = True                                 # включил для использования разделителя разрядов
 
 USE_TZ = True
 
@@ -139,13 +144,20 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'static/img'),
+    os.path.join(BASE_DIR, 'static/css'),
+    os.path.join(BASE_DIR, 'static/js'),
+    os.path.join(BASE_DIR, 'static/ico'),
+    # os.path.join(BASE_DIR, 'static/ckeditor'),
+]
+
 
 DATE_INPUT_FORMATS = [
-    '%Y-%m-%d', '%m/%d/%Y', '%m/%d/%y',  # '2006-10-25', '10/25/2006', '10/25/06'
-    '%b %d %Y', '%b %d, %y',             # 'Oct 25 2006', 'Oct 25, 06'
-    '%d %b %Y', '%d %b, %y',             # '25 Oct 2006', '25 Oct, 06'
-    '%B %d %Y', '%B %d, %y',             # 'October 25 2006', 'October 25, 06'
-    '%d %B %Y', '%d %B, %y',             # '25 October 2006', '25 October, 06'
+    '%d/%m/%Y', '%d/%m/%y',              # '25/10/2020', '25/10/20'
+    '%d-%m-%Y', '%d-%m-%y,'              # '25-10-2020', '25-10-20'
     '%d.%m.%Y', '%d.%m.%y',              # '25.06.2020', '25.06.20'
     '%d %m %Y', '%d %m %y',              # '25 06 2020', '25 06 20'
 ]

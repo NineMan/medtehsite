@@ -18,14 +18,14 @@
 
       <!-- Бренд с картинкой -->
       <a class="navbar-brand text-danger" href="#">
-        <img src="/static/bills/images/logo.png" class="d-inline-block align-top" alt="" loading="lazy">
+        <img src="{% static '/img/logo.png' %} " class="d-inline-block align-top" alt="" loading="lazy">
         {#Медтехника#}
       </a>
       <!-- Кнопка нового заказа -->
       {% if user.is_authenticated %}
       <a href="{% url 'bills:bill_new' %}" class="btn btn-success my-n4">Новый заказ</a>
       {% else %}
-      <a href="{% url 'login' %}" class="btn btn-secondary my-n4">Новый заказ</a>
+      <a href="{% url 'login' %}" class="btn btn-outline-secondary my-n4">Новый заказ</a>
       {% endif %}
       <!-- Тогглер (менюшка с тремя полосками) -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,7 +74,7 @@
           {% else %}
             <div class="d-flex col justify-content-end">
               <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
-                <a href="{% url 'login' %}" class="btn btn-success">  Вход  </a>
+                <a href="{% url 'login' %}" class="btn btn-outline-success">  Вход  </a>
               </div>
             </div>
           {% endif %}

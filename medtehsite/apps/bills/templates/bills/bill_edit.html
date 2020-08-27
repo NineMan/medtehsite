@@ -72,6 +72,7 @@
             <div class="row px-0 mb-2">
               <div class="col-6 col-sm-3 py-2">Дата поставки:</div>
               {% if bill.supply_date %}
+{#                <div class="col          py-2 font-weight-bold">{{ bill.supply_date }}</div>#}
                 <div class="col          py-2 font-weight-bold">{{ bill.supply_date }}</div>
               {% else %}
                 <div class="col          py-2 font-weight-bold">{{ bill.order_author.last_name|default:'нет указан' }}</div>
@@ -118,7 +119,7 @@
 
           <div class="row px-0 mb-2">
             <div class="col-6 col-sm-3 py-2">Запросил счёт:</div>
-            <div class="col            py-2">не используется</div>
+            <div class="col            py-2">{{ form.order_author }}</div>
           </div>
 
           <div class="row px-0 mb-2">

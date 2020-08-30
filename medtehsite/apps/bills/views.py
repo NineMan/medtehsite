@@ -1,7 +1,8 @@
-﻿from django.http import Http404
-from django.http import HttpResponseRedirect
-from django.contrib.auth.decorators import login_required
-from django.shortcuts import render, get_object_or_404, redirect
+﻿from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404
+from django.shortcuts import get_list_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.utils import timezone
 
 from .models import Bill
@@ -14,9 +15,9 @@ def bill_list(request):
     if display == 'all':
         bills = Bill.objects.all()
     elif display == 'supply':
-        bills = Bill.objects.filter(supply='Да')
+        bills = get_list_or_404(Bill, supply='Да')
     else:
-        bills = Bill.objects.filter(supply='Нет')
+        bills = get_list_or_404(Bill, supply='Нет')
 
     return render(request, 'bills/bill_list.html', {'bills': bills})
 
@@ -24,7 +25,7 @@ def bill_list(request):
 def bill_detail(request, pk):
 
     if request.method == 'POST':
-        bill = Bill.objects.get(pk=pk)
+        bill = get_object_or_404(Bill, pk=pk)
         bill.supply = 'Да'
         bill.supply_date = timezone.now()
         bill.save()
@@ -68,29 +69,23 @@ def bill_new(request):
 @login_required
 def bill_edit(request, pk):
 
-    bill = Bill.objects.get(pk=pk)
+    bill = get_object_or_404(Bill, pk=pk)
     if request.method == 'POST':
         form = BillForm(request.POST, instance=bill)
-
-        # Проверка заказа: "Заказ доставлен?"   (лучше перенести в бизнес-логику)
-        if form.instance.supply == "Да":
-            bill.supply_date = timezone.now()
-        elif form.instance.supply == "Нет":
-            bill.supply_date = None
-
         # Проверка формы
         if form.is_valid():
             bill = form.save()
-            bill.save()
             return redirect('bills:bill_detail', pk=bill.pk)
-        else:
-            pass                                                        # Прописать на случай невалидности формы.
-
     else:
         form = BillForm(instance=bill)
-    print('In bill edit')
-
     return render(request, 'bills/bill_edit.html', {'form': form, 'bill': bill})
+
+
+@login_required
+def bill_delivered(request, pk):
+    bill = get_object_or_404(Bill, pk=pk)
+    bill.delivered()
+    return redirect('bills:bill_detail', pk=pk)
 
 
 def test(request):
@@ -102,20 +97,6 @@ def test(request):
 def test2(request):
     bill = Bill.objects.get(pk=2)
     form = BillForm(instance=bill)
-    # if request.method == 'POST':
-    #     form = BillForm(request.POST, instance=bill)
-    #     if form.instance.supply == "Да":
-    #         bill.supply_date = timezone.now()
-    #     elif form.instance.supply == "Нет":
-    #         bill.supply_date = None
-    #
-    #     if form.is_valid():
-    #         bill = form.save()
-    #         bill.save()
-    #         return redirect('bills:bill_detail', pk=bill.pk)
-    # else:
-    #     form = BillForm(instance=bill)
-
     return render(request, 'test/test2.html', {'form': form, 'bill': bill})
 
 

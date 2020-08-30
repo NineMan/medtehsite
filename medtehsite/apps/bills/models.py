@@ -51,6 +51,11 @@ class Bill(models.Model):
     comment = models.TextField(blank=True,              # Комментарий к заказу
                                verbose_name='Комментарий')
 
+    def delivered(self):
+        self.supply_date = datetime.now().date()
+        self.supply = 'Да'
+        self.save()
+
     def __str__(self):
         return str(self.pk) + ' ' + str(self.product) + ' для ' + str(self.clinic)
 

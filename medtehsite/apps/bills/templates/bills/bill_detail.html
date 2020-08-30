@@ -177,7 +177,7 @@
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Отмена</button>
             </div>
             <div class="col bg-light">
-                <form action="{{ bill.pk }}" method="post">
+                <form action="{% url 'bills:bill_delivered' pk=bill.pk %}" method="post">
                   {% csrf_token %}
                   <input type="hidden" name="supply" value="yes">
                   <input  class="btn btn-success" type="submit" value="Получили">

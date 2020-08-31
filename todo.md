@@ -23,6 +23,7 @@
 - [ ] Сделать тесты
 - [ ] Упаковать в Docker/Docker-Compose]
 - [ ] Настроить CI/CD на GitLab?
+- [ ] Использовать crispy-forms
 - [ ] Сделать логи
 - [ ] Регистрация (вход) по смс. Для зарегистрированных пользователей.
 - [ ] Подгружать скан счёта  https://docs.djangoproject.com/en/3.1/topics/http/file-uploads/

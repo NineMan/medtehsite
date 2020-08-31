@@ -26,9 +26,7 @@ class Bill(models.Model):
                               choices=BOOL,
                               default='Нет',
                               verbose_name='Состояние поставки заказа')
-    supply_date = models.DateField(blank=True,          # Дата доставки. Появляется если есть поставка.
-                                   auto_now=True,
-                                   editable=False,
+    supply_date = models.DateField(blank=True,          # Дата доставки.
                                    null=True,
                                    verbose_name='Дата прихода заказа')
     order_date = models.DateField(auto_now_add=True,    # Дата создания заказа (передачи в оплату)

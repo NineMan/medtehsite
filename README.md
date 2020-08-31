@@ -27,3 +27,7 @@
 После этого также можно отправлять на heroku сервер:
     
     git push heroku master
+
+Запуск тестов:
+
+    python manage.py test bills

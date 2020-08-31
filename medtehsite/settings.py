@@ -29,9 +29,9 @@ SECRET_KEY = 'yn3yuv!8ktv714_2^0v#m95j-6lja-v1+ys!hsdh5#_t9+k+3p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 # DEBUG = True
-# DEBUG = False
+DEBUG = False
 # Нужно проверить !!!
-DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))     # Взято у Андрона. Проверяет переменную окружения DJANGO_DEBUG
+# DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))     # Взято у Андрона. Проверяет переменную окружения DJANGO_DEBUG
 
 ALLOWED_HOSTS = [
     'localhost',

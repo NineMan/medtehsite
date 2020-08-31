@@ -2,11 +2,11 @@
 {% load static %}
 
 {% block title %}
-  Счета на з/части
+  Главная
 {% endblock %}
 
 {% block link %}
-  <link rel="stylesheet" href="{% static 'bills/css/bill_list.css' %}">
+  {#<link rel="stylesheet" href="{% static 'bills/css/index.css' %}">#}
 {% endblock %}
 
 {% block content %}
@@ -21,12 +21,6 @@
         <img src="{% static '/img/logo.png' %} " class="d-inline-block align-top" alt="" loading="lazy">
         {#Медтехника#}
       </a>
-      <!-- Кнопка нового заказа -->
-      {% if user.is_authenticated %}
-      <a href="{% url 'bills:bill_new' %}" class="btn btn-success my-n4">Новый заказ</a>
-      {% else %}
-      <a href="{% url 'login' %}" class="btn btn-outline-secondary my-n4">Новый заказ</a>
-      {% endif %}
       <!-- Тогглер (менюшка с тремя полосками) -->
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -34,19 +28,19 @@
       <!-- Ссылки которые сворачиваются при уменьшении -->
       <div class="collapse navbar-collapse border border-dark" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'bills:index' %}">Главная <span class="sr-only">(current)</span></a>
-            {#<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Главная</a>#}
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'bills:bill_list' %}">Ожидаем</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=supply">Полученные</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=all">Все заказы</a>
-          </li>
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="{% url 'bills:index' %}">Главная <span class="sr-only">(current)</span></a>#}
+{#            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Главная</a>#}
+{#          </li>#}
+{#          <li class="nav-item active">#}
+{#            <a class="nav-link" href="{% url 'bills:bill_list' %}">Ожидаем</a>#}
+{#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=supply">Полученные</a>#}
+{#          </li>#}
+{#          <li class="nav-item">#}
+{#            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=all">Все заказы</a>#}
+{#          </li>#}
         </ul>
 
         <!-- Форма для кнопки регистрации -->
@@ -84,43 +78,23 @@
   </div>
 
 
-  <!-- Основная таблица -->
-  <div class="table-responsive-md">
-    <table class="table table-hover table-sm pt-5 table-bordered" width="100%">
-
-    <thead class="thead-dark">
-      <tr>
-        <th class="sticky-top py-3 text-center align-middle d-none d-md-table-cell" width="2%">№</th>
-        <th class="sticky-top py-3 text-center align-middle">Что заказали</th>
-        <th class="sticky-top py-3 text-center align-middle" width="18%">Поставщик</th>
-        <th class="sticky-top py-3 text-center align-middle" width="20%">ЛПУ</th>
-        <th class="sticky-top py-3 text-center align-middle" width="10%">Техник</th>
-        <th class="sticky-top py-3 text-center align-middle d-none d-sm-table-cell" >Доставлено</th>
-        <th class="sticky-top py-3 text-center align-middle d-none d-md-table-cell">Дата доставки</th>
-
-      </tr>
-    </thead>
-
-    <tbody>
-      {% for bill in bills %}
-        <tr class="border-bottom" onclick="window.location.href = '{% url 'bills:bill_detail' pk=bill.pk %}';">
-          <td class="align-middle d-none d-md-table-cell">{{ forloop.counter }}</td>
-          <td class="align-middle">{{ bill.product }}</td>
-          <td class="align-middle">{{ bill.supplier }}</td>
-          <td class="align-middle">{{ bill.clinic }}</td>
-          <td class="align-middle">{{ bill.engineer }}</td>
-          <td class="align-middle d-none d-sm-table-cell">{{ bill.supply }}</td>
-          {% if bill.supply == 'Нет' %}
-            <td class="align-middle d-none d-md-table-cell">не доставлено</td>
-          {% else %}
-            <td class="align-middle d-none d-md-table-cell">{{ bill.supply_date }}</td>
-          {% endif %}
-        </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <div class="d-flex row-flex justify-content-center">
+    <button type="button" class="btn btn-lg btn-success mt-5" onclick="window.location.href='{% url 'bills:bill_list' %}'">Заказ з/частей по счёту</button>
   </div>
-
+  <div class="d-flex row-flex justify-content-center">
+    <button type="button" class="btn btn-lg btn-secondary mt-5"
+        data-container="body"
+        data-toggle="popover"
+        data-placement="left"
+        data-content="В разработке">Заявки от ЛПУ</button>
+  </div>
+  <div class="d-flex row-flex justify-content-center">
+    <button type="button" class="btn btn-lg btn-secondary mt-5"
+        data-container="body"
+        data-toggle="popover"
+        data-placement="left"
+        data-content="В разработке">Ремонт</button>
+  </div>
 
 {% endblock %}
 

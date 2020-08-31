@@ -8,6 +8,10 @@ from .models import Bill
 from .forms import BillForm
 
 
+def index(request):
+    return render(request, 'bills/index.html')
+
+
 def bill_list(request):
 
     display = request.GET.get('display')

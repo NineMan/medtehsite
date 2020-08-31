@@ -62,10 +62,8 @@
                   </a>
                   <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                     <!-- Дополнительная строчка в выпадающем меню -->
-                    <!--
-                    <a class="dropdown-item" href="#">Action</a>
-                    <div class="dropdown-divider"></div>
-                    -->
+                    {#<a class="dropdown-item" href="#">Action</a>#}
+                    {#<div class="dropdown-divider"></div>#}
                     <a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a>
                   </div>
                  </li>
@@ -105,7 +103,7 @@
 
     <tbody>
       {% for bill in bills %}
-        <tr class="border-bottom" onclick="window.location.href = 'bill/{{ bill.pk }}';">
+        <tr class="border-bottom" onclick="window.location.href = '{% url 'bills:bill_detail' pk=bill.pk %}';">
           <td class="align-middle d-none d-md-table-cell">{{ forloop.counter }}</td>
           <td class="align-middle">{{ bill.product }}</td>
           <td class="align-middle">{{ bill.supplier }}</td>

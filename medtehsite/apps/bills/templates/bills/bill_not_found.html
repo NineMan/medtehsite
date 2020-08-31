@@ -21,9 +21,11 @@
 
     <!-- Три кнопки навигации для обеих версий-->
     <div class="d-flex row mb-2 justify-content-center">
-      <button type="button" class="btn btn-primary" style="width: 3rem" disabled><<</button>
-      <button type="button" class="btn btn-primary mx-2" style="width: 7rem" onclick="window.location.href='/'">На главную</button>
-      <button type="button" class="btn btn-primary" style="width: 3rem" disabled>>></button>
+      <button type="button" class="btn btn-primary"      style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail' pk=pk_first %}'"><<</button>
+      <button type="button" class="btn btn-primary mx-2" style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail_prev' pk=pk %}'"><</button>
+      <button type="button" class="btn btn-primary "     style="width: 7rem" onclick="window.location.href='{% url 'bills:bill_list' %}'">На главную</button>
+      <button type="button" class="btn btn-primary mx-2" style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail_next' pk=pk %}'">></button>
+      <button type="button" class="btn btn-primary"      style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail' pk=pk_last %}'">>></button>
     </div>
 
     <!-- Кнопка "вернуться" -->

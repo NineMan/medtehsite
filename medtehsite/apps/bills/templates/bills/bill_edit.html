@@ -25,7 +25,7 @@
     <div class="d-flex row mb-2">
       <!-- Кнопка возврата в главное меню для обеих версий-->
       <div class="d-flex col-md justify-content-center">
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='{% url 'bills:bill_list' %}'">На главную</button>
       </div>
     </div>
 
@@ -72,10 +72,9 @@
             <div class="row px-0 mb-2">
               <div class="col-6 col-sm-3 py-2">Дата поставки:</div>
               {% if bill.supply_date %}
-{#                <div class="col          py-2 font-weight-bold">{{ bill.supply_date }}</div>#}
                 <div class="col          py-2 font-weight-bold">{{ bill.supply_date }}</div>
               {% else %}
-                <div class="col          py-2 font-weight-bold">{{ bill.order_author.last_name|default:'нет указан' }}</div>
+                <div class="col          py-2 font-weight-bold">не доставлена</div>
               {% endif %}
             </div>
 
@@ -143,7 +142,7 @@
     <div class="d-flex row">
       <!-- Кнопка возврата в главное меню для мобильной версии-->
       <div class="d-flex col-md d-md-none d-block justify-content-center mb-2">
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
+        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='{% url 'bills:bill_list' %}'">На главную</button>
       </div>
     </div>
 

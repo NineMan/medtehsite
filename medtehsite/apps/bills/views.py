@@ -3,7 +3,6 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import get_list_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
-from django.utils import timezone
 
 from .models import Bill
 from .forms import BillForm
@@ -24,27 +23,15 @@ def bill_list(request):
 
 def bill_detail(request, pk):
 
-    if request.method == 'POST':
-        bill = get_object_or_404(Bill, pk=pk)
-        bill.supply = 'Да'
-        bill.supply_date = timezone.now()
-        bill.save()
-    else:
-        """
-        Обрабатываю "пустую" страницу
-        """
-        pk_last = request.META.get('HTTP_REFERER', '')
-        if pk_last:
-            pk_last = pk_last.split('/')[-1]
-        else:
-            pk_last = Bill.objects.all().last().pk
+    pk_first = Bill.objects.all().first().pk
+    pk_last = Bill.objects.all().last().pk
 
-        try:
-            bill = Bill.objects.get(pk=pk)
-        except Bill.DoesNotExist:
-            return render(request, 'bills/bill_not_found.html', {'pk': pk_last})
+    try:
+        bill = Bill.objects.get(pk=pk)
+    except Bill.DoesNotExist:
+        return render(request, 'bills/bill_not_found.html', {'pk': pk, 'pk_first': pk_first, 'pk_last': pk_last})
 
-    return render(request, 'bills/bill_detail.html', {'bill': bill})
+    return render(request, 'bills/bill_detail.html', {'bill': bill, 'pk': pk, 'pk_first': pk_first, 'pk_last': pk_last})
 
 
 @login_required
@@ -78,27 +65,34 @@ def bill_edit(request, pk):
             return redirect('bills:bill_detail', pk=bill.pk)
     else:
         form = BillForm(instance=bill)
+
     return render(request, 'bills/bill_edit.html', {'form': form, 'bill': bill})
 
 
 @login_required
 def bill_delivered(request, pk):
+
     bill = get_object_or_404(Bill, pk=pk)
     bill.delivered()
+
+    return redirect('bills:bill_detail', pk=pk)
+
+
+def bill_detail_prev(request, pk):
+
+    if pk > 1:
+        pk -= 1
+    return redirect('bills:bill_detail', pk=pk)
+
+
+def bill_detail_next(request, pk):
+
+    pk += 1
     return redirect('bills:bill_detail', pk=pk)
 
 
 def test(request):
+    """ Для тестовых разработок """
     bill = Bill.objects.get(pk=3)
     form = BillForm(instance=bill)
     return render(request, 'test/test.html', {'form': form, 'bill': bill})
-
-
-def test2(request):
-    bill = Bill.objects.get(pk=2)
-    form = BillForm(instance=bill)
-    return render(request, 'test/test2.html', {'form': form, 'bill': bill})
-
-
-def test3(request):
-    return render(request, 'test/test3.html')

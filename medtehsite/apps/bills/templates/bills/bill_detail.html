@@ -23,10 +23,12 @@
 
     <!-- Кнопки навигации верхние-->
     <div class="d-flex row mb-2 justify-content-center">
-      <!-- Три кнопки навигации для обеих версий-->
-        <button type="button" class="btn btn-primary" style="width: 3rem" onclick="window.location.href = '{{ bill.pk|add:-1 }}'"><<</button>
-        <button type="button" class="btn btn-primary mx-2" onclick="window.location.href='/'">На главную</button>
-        <button type="button" class="btn btn-primary" style="width: 3rem" onclick="window.location.href = '{{ bill.pk|add:1 }}'">>></button>
+      <!-- Кнопки навигации для обеих версий / first prev & next last objects -->
+        <button type="button" class="btn btn-primary"      style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail' pk=pk_first %}'"><<</button>
+        <button type="button" class="btn btn-primary mx-2" style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail_prev' pk=pk %}'"><</button>
+        <button type="button" class="btn btn-primary "     style="width: 7rem" onclick="window.location.href='{% url 'bills:bill_list' %}'">На главную</button>
+        <button type="button" class="btn btn-primary mx-2" style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail_next' pk=pk %}'">></button>
+        <button type="button" class="btn btn-primary"      style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail' pk=pk_last %}'">>></button>
     </div>
 
     <!-- Основной ряд в котором две колонки-->
@@ -147,11 +149,13 @@
           <button type="button" class="btn btn-secondary" onclick="window.location.href='#'" disabled>Удалить</button>
         {% endif %}
       </div>
-      <!-- Три кнопки навигации для мобильной версии -->
+      <!-- Кнопки навигации для мобильной версии -->
       <div class="d-flex col-md d-md-none d-block justify-content-center mb-2">
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:-1 }}';"><<</button>
-        <button type="button" class="btn btn-primary mx-1" onclick="window.location.href='/'">На главную</button>
-        <button type="button" class="btn btn-primary" onclick="window.location.href = '{{ bill.pk|add:1 }}';">>></button>
+        <button type="button" class="btn btn-primary"      style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail' pk=pk_first %}'"><<</button>
+        <button type="button" class="btn btn-primary mx-2" style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail_prev' pk=pk %}'"><</button>
+        <button type="button" class="btn btn-primary "     style="width: 7rem" onclick="window.location.href='{% url 'bills:bill_list' %}'">На главную</button>
+        <button type="button" class="btn btn-primary mx-2" style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail_next' pk=pk %}'">></button>
+        <button type="button" class="btn btn-primary"      style="width: 3rem" onclick="window.location.href='{% url 'bills:bill_detail' pk=pk_last %}'">>></button>
       </div>
     </div>
 

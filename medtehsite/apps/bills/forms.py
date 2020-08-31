@@ -33,6 +33,6 @@ class BillForm(forms.ModelForm):
             'order_author': forms.Select(attrs={'class': 'form-control'}),
             'bill_number': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Номер счёта'}),
             'bill_date': DateInput(attrs={'class': 'form-control'}),
-            'bill_sum': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': ''}),
+            'bill_sum': forms.NumberInput(attrs={'class': 'form-control'}),
             'comment': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Комментарий', 'rows': 3}),
         }

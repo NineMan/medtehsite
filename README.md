@@ -1,33 +1,69 @@
-## CRM приложение для работы с медоборудованием
+##  Описание проекта 
 
-Первоначальный деплой на heroku:
+CRM приложение для работы с медоборудованием
 
-    "вспомнить, добавить"
+
+```bash
+  - bills - модуль для отслеживания запчастей заказанных по безналу
+```
+можно посмотреть кто что заказал, понять кому пришла посылка.
+
+```python
+  - cash - контроль закупок за наличку - в разработке
+  - order - отслеживание заявок на обслуживание - в разработке
+  - repair - модуль для приёма, выдачи и отслеживания ремонта - в разработке
+```
+
+####Использовано в проекте:
+
+```bash
+  * front - Bootstrap 4.5
+  * back  - Django 3.1
+```
+
+#### Запуск приложения
+
+1 Установить виртуальное окружение и запустить его
+
+2 Скопировать себе в репозитарий 
+
+```python
+git clone https://github.com/NineMan/medtehsite.git
+```
+
+3 Установить зависимости
+  
+```python
+pip install -r requirements.txt
+```
     
-## Добавить изменения в задеплоенное приложение:
-
-*считаем, что консоль heroku локально установлена*
-
-    heroku login                                            // залогиниться в консоли
-    git clone https://github.com/NineMan/medtehsite.git     // скопировать локально (например в папку publish)
-
-    DEBUG = False                                           // отключаем debug mode в файле settins.py нашего проекта (metdehsite/medtehsite/settings.py)
-    ALLOWED_HOSTS = ['http://mt-vlg.herokuapp.com/']        // обязательно нужно указать список доступных хостов (там же)
-
-    cd mdtehsite
-    heroku git:remote -a mt-vlg                             // подключаем репу к приложению на heroku (в консоли)
-    git push heroku master                                  // пушим в мастер ветку на heroku
-
----
-
-Эта команда подтянет изменения, произошедшие на репозитории GitHub:
-
-    git pull    
-
-После этого также можно отправлять на heroku сервер:
+4 Создать таблицы в базе данных 
+  
+```python
+python manage.py migrate
+```
     
-    git push heroku master
+5 Создать админа
+  
+```python
+python manage.py createsuperuser
+```
+    
+6 Заполнить базу тестовыми данными
+  
+```python
+python manage.py loaddata medtehsite/apps/bills/fixtures/test_data.json
+``` 
+
+7 Запустить приложение
+  
+```python
+python manage.py runserver
+```
 
 Запуск тестов:
 
-    python manage.py test bills
+```python
+python manage.py test bills
+```
+

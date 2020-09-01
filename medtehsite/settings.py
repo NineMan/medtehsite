@@ -28,8 +28,8 @@ sys.path.insert(0, os.path.join(PROJECT_ROOT, 'apps'))                      # В
 SECRET_KEY = 'yn3yuv!8ktv714_2^0v#m95j-6lja-v1+ys!hsdh5#_t9+k+3p'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 # Нужно проверить !!!
 # DEBUG = bool(os.environ.get('DJANGO_DEBUG', True))     # Взято у Андрона. Проверяет переменную окружения DJANGO_DEBUG
 
@@ -145,14 +145,14 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static'),
-    os.path.join(BASE_DIR, 'static/img'),
-    os.path.join(BASE_DIR, 'static/css'),
-    os.path.join(BASE_DIR, 'static/js'),
-    os.path.join(BASE_DIR, 'static/ico'),
-    # os.path.join(BASE_DIR, 'static/ckeditor'),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'static'),
+#     os.path.join(BASE_DIR, 'static/img'),
+#     os.path.join(BASE_DIR, 'static/css'),
+#     os.path.join(BASE_DIR, 'static/js'),
+#     os.path.join(BASE_DIR, 'static/ico'),
+#     # os.path.join(BASE_DIR, 'static/ckeditor'),
+# ]
 
 
 DATE_INPUT_FORMATS = [
@@ -175,3 +175,4 @@ NUMBER_GROUPING = 3
 # Настройки для деплоя на heroku
 django_heroku.settings(locals())
 
+DEBUG_PROPAGATE_EXCEPTIONS = True

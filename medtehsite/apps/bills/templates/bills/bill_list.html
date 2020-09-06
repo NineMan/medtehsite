@@ -96,7 +96,7 @@
         <th class="sticky-top py-3 text-center align-middle" width="18%">Поставщик</th>
         <th class="sticky-top py-3 text-center align-middle" width="20%">ЛПУ</th>
         <th class="sticky-top py-3 text-center align-middle" width="10%">Техник</th>
-        <th class="sticky-top py-3 text-center align-middle d-none d-sm-table-cell" >Доставлено</th>
+        <th class="sticky-top py-3 text-center align-middle d-none d-sm-table-cell">Длительность<br>заказа (дней)</th>
         <th class="sticky-top py-3 text-center align-middle d-none d-md-table-cell">Дата доставки</th>
 
       </tr>
@@ -105,12 +105,14 @@
     <tbody>
       {% for bill in bills %}
         <tr class="border-bottom" onclick="window.location.href = '{% url 'bills:bill_detail' pk=bill.pk %}';">
-          <td class="align-middle d-none d-md-table-cell">{{ forloop.counter }}</td>
+          <td class="align-middle d-none d-md-table-cell text-center">{{ forloop.counter }}</td>
           <td class="align-middle">{{ bill.product }}</td>
           <td class="align-middle">{{ bill.supplier }}</td>
           <td class="align-middle">{{ bill.clinic }}</td>
           <td class="align-middle">{{ bill.engineer }}</td>
-          <td class="align-middle d-none d-sm-table-cell">{{ bill.supply }}</td>
+
+          <td class="align-middle d-none d-sm-table-cell text-center">{{ bill.days_count }}</td>
+
           {% if bill.supply == 'Нет' %}
             <td class="align-middle d-none d-md-table-cell">не доставлено</td>
           {% else %}

@@ -2,7 +2,7 @@
 
 #### Первоначальный деплой:
 
-Добавить в requirements.txt ***Gunicorn***
+Добавить в [requirements.txt](https://github.com/NineMan/medtehsite/blob/master/requirements.txt) ***Gunicorn***
 
     
 Добавить в корень ***[Procfile](https://github.com/NineMan/medtehsite/blob/master/Procfile)***, он содержит настройку для использования единорога 
@@ -11,13 +11,13 @@
     web: gunicorn medtehsite.wsgi
     
 
-Добавить в корень ***runtime.txt***, он содержит версию python
+Добавить в корень ***[runtime.txt](https://github.com/NineMan/medtehsite/blob/master/runtime.txt)***, он содержит версию python
     
     
     python-3.7.6
     
 
-Установить консоль heroku
+Установить [консоль heroku](https://devcenter.heroku.com/articles/getting-started-with-python#set-up)
 
 В консоли выполнить комнды
 

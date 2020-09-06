@@ -5,9 +5,9 @@
 Добавить в requirements.txt ***Gunicorn***
 
     
-Добавить в корень ***Procfile***, он содержит настройку для использования единорога 
+Добавить в корень ***[Procfile](https://github.com/NineMan/medtehsite/blob/master/Procfile)***, он содержит настройку для использования единорога 
 
-    
+
     web: gunicorn medtehsite.wsgi
     
 

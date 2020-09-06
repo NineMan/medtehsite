@@ -64,5 +64,5 @@ python manage.py test bills
 python manage.py runserver
 ```
 
-8 [Деплой на Heroku](https://github.com/NineMan/medtehsite/blob/master/heroku.md#%D0%B4%D0%B5%D0%BF%D0%BB%D0%BE%D0%B9-%D0%BD%D0%B0-heroku)
+9 [Деплой на Heroku](https://github.com/NineMan/medtehsite/blob/master/heroku.md#%D0%B4%D0%B5%D0%BF%D0%BB%D0%BE%D0%B9-%D0%BD%D0%B0-heroku)
 

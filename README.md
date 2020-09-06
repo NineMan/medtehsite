@@ -53,15 +53,17 @@ python manage.py createsuperuser
 python manage.py loaddata medtehsite/apps/bills/fixtures/test_data.json
 ``` 
 
-7 Запустить приложение
+7 Запуск тестов:
+
+```python
+python manage.py test bills
+```
+8 Запустить приложение
   
 ```python
 python manage.py runserver
 ```
 
-Запуск тестов:
-
-```python
-python manage.py test bills
-```
+8 Деплой на Heroku
+https://github.com/NineMan/medtehsite/blob/master/heroku.md#%D0%B4%D0%B5%D0%BF%D0%BB%D0%BE%D0%B9-%D0%BD%D0%B0-heroku
 

@@ -178,7 +178,87 @@ THOUSAND_SEPARATOR = ' '
 USE_THOUSAND_SEPARATOR = True
 NUMBER_GROUPING = 3
 
+# LOGGING = {
+#     'version': 1,
+#     'disable_existing_loggers': False,
+#     'formatters': {
+#         'verbose': {
+#             'format' : "[%(asctime)s] %(levelname)s [%(name)s:%(lineno)s] %(message)s",
+#             'datefmt' : "%d/%b/%Y %H:%M:%S"
+#         },
+#         'simple': {
+#             'format': '%(levelname)s %(message)s'
+#         },
+#     },
+#     'handlers': {
+#         'file': {
+#             'level': 'DEBUG',
+#             'class': 'logging.FileHandler',
+#             'filename': 'apps.bills.bills.log',
+#             'formatter': 'verbose'
+#         },
+#     },
+#     'loggers': {
+#         'medtehsite': {
+#             'handlers': ['file'],
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#             # 'level': 'DEBUG',
+#         },
+#         'medtehsite.apps.bills': {
+#             'handlers': ['file'],
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#             # 'level': 'DEBUG',
+#         },
+#         'apps.bills': {
+#             'handlers': ['file'],
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#             # 'level': 'DEBUG',
+#         },
+#         'bills': {
+#             'handlers': ['file'],
+#             'propagate': True,
+#             'level': os.getenv('DJANGO_LOG_LEVEL', 'INFO'),
+#         },
+#     }
+# }
+
 # Настройки для деплоя на heroku
+
 django_heroku.settings(locals())
 
 DEBUG_PROPAGATE_EXCEPTIONS = True
+
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'console': {
+            'format': '%(name)-12s %(levelname)-8s %(message)s'
+        },
+        'file': {
+            'format': '%(asctime)s %(name)-12s %(levelname)-8s %(message)s'
+        }
+    },
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+            'formatter': 'console'
+        },
+        'file': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'formatter': 'file',
+            'filename': 'debug.log'
+        }
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['console', 'file'],
+            'propagate': True
+        }
+    }
+}

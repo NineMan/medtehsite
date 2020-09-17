@@ -6,6 +6,10 @@ from django.shortcuts import render
 
 from .models import Bill
 from .forms import BillForm
+import logging
+
+
+logger = logging.getLogger(__name__)
 
 
 def index(request):
@@ -21,6 +25,7 @@ def bill_list(request):
         bills = get_list_or_404(Bill, supply='Да')
     else:
         bills = get_list_or_404(Bill, supply='Нет')
+    logger.debug(bills)
 
     return render(request, 'bills/bill_list.html', {'bills': bills})
 
@@ -34,6 +39,8 @@ def bill_detail(request, pk):
         bill = Bill.objects.get(pk=pk)
     except Bill.DoesNotExist:
         return render(request, 'bills/bill_not_found.html', {'pk': pk, 'pk_first': pk_first, 'pk_last': pk_last})
+    logger.debug('user read bill')
+    logger.debug(bill)
 
     return render(request, 'bills/bill_detail.html', {'bill': bill, 'pk': pk, 'pk_first': pk_first, 'pk_last': pk_last})
 

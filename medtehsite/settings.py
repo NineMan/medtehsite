@@ -181,4 +181,4 @@ NUMBER_GROUPING = 3
 # Настройки для деплоя на heroku
 django_heroku.settings(locals())
 
-# DEBUG_PROPAGATE_EXCEPTIONS = True
+DEBUG_PROPAGATE_EXCEPTIONS = True

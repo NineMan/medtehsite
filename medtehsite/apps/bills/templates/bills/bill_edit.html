@@ -98,6 +98,7 @@
 
           <div class="row px-0 mb-2">
             <div class="col-sm-3 py-2">Дата счёта:</div>
+            <div class="col-sm   py-0 my-auto font-weight-bold">{{ bill.bill_date|default_if_none:"-" }}</div>
             <div class="col-sm   py-0 my-auto">{{ form.bill_date }}</div>
           </div>
 

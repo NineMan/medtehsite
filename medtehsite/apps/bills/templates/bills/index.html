@@ -29,19 +29,6 @@
       <!-- Ссылки которые сворачиваются при уменьшении -->
       <div class="collapse navbar-collapse border border-dark" id="navbarNav">
         <ul class="navbar-nav mr-auto">
-{#          <li class="nav-item">#}
-{#            <a class="nav-link" href="{% url 'bills:index' %}">Главная <span class="sr-only">(current)</span></a>#}
-{#            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Главная</a>#}
-{#          </li>#}
-{#          <li class="nav-item active">#}
-{#            <a class="nav-link" href="{% url 'bills:bill_list' %}">Ожидаем</a>#}
-{#          </li>#}
-{#          <li class="nav-item">#}
-{#            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=supply">Полученные</a>#}
-{#          </li>#}
-{#          <li class="nav-item">#}
-{#            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=all">Все заказы</a>#}
-{#          </li>#}
         </ul>
 
         <!-- Форма для кнопки регистрации -->
@@ -80,178 +67,25 @@
 
 
   <div class="d-flex row-flex justify-content-center">
-    <button type="button" class="btn btn-lg btn-success mt-5" onclick="window.location.href='{% url 'bills:bill_list' %}'">Заказ з/частей по счёту</button>
+    <button type="button"
+            class="btn btn-lg btn-success mt-5"
+            onclick="window.location.href='{% url 'bills:bill_list' %}'">Заказ з/частей по счёту</button>
   </div>
   <div class="d-flex row-flex justify-content-center">
-    <button type="button" class="btn btn-lg btn-secondary mt-5"
-        data-container="body"
-        data-toggle="popover"
-        data-placement="left"
-        data-content="В разработке">Заявки от ЛПУ</button>
+    <button type="button"
+            class="btn btn-lg btn-secondary mt-5"
+            data-container="body"
+            data-toggle="popover"
+            data-placement="left"
+            data-content="В разработке">Заявки от ЛПУ</button>
   </div>
   <div class="d-flex row-flex justify-content-center">
-    <button type="button" class="btn btn-lg btn-secondary mt-5"
-        data-container="body"
-        data-toggle="popover"
-        data-placement="left"
-        data-content="В разработке">Ремонт</button>
+    <button type="button"
+            class="btn btn-lg btn-secondary mt-5"
+            data-container="body"
+            data-toggle="popover"
+            data-placement="left"
+            data-content="В разработке">Ремонт</button>
   </div>
 
 {% endblock %}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="container-fluid px-0">
-    <!-- Навигационная панель / последний вариант -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-
-      <!-- Бренд с картинкой -->
-      <a class="navbar-brand border border-dark text-danger" href="#">
-        <img src="/static/bills/images/mt-1.png" height="30" class="d-inline-block align-top" alt="" loading="lazy">
-          Медтехника
-      </a>
-      <!-- Тогглер (менюшка с тремя полосками) -->
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <!-- Ссылки которые сворачиваются при уменьшении -->
-      <div class="collapse navbar-collapse border border-dark" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <!-- <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a> -->
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Главная</a>
-          </li>
-          <li class="nav-item active">
-            <a class="nav-link" href="{% url 'bills:bill_list' %}">Ожидаем</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=supply">Полученные</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'bills:bill_list' %}?display=all">Все заказы</a>
-          </li>
-        </ul>
-
-        <!-- Форма для кнопки регистрации -->
-        <form class="form-inline my-2 my-lg-0">
-          <!-- Кнопка регистрации -->
-          {% if user.is_authenticated %}
-            <div class="d-flex col justify-content-left">
-              <!-- Выпадающее меню -->
-              <ul class="navbar-nav pr-3">
-                <li class="nav-item dropleft">
-                  <a class="nav-link dropdown-toggle pt-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ user.last_name }}
-                  </a>
-                  <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <!-- Дополнительная строчка в выпадающем меню -->
-                    <!--
-                    <a class="dropdown-item" href="#">Action</a>
-                    <div class="dropdown-divider"></div>
-                    -->
-                    <a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a>
-                  </div>
-                 </li>
-              </ul>
-            </div>
-          {% else %}
-            <div class="d-flex col justify-content-end">
-              <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
-                <a href="{% url 'login' %}" class="btn btn-success">  Вход  </a>
-              </div>
-            </div>
-          {% endif %}
-          <!-- /Кнопка регистрации -->
-        </form>
-
-      </div>
-    </nav>
-  </div>
-
-
-  <!-- Шапка (navbar) / старый вариант -->
-  <div class="container-fluid">
-    <div class="row">
-      <!-- Кнопки -->
-      <div class="col">
-        <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
-          <form action="{% url 'bills:bill_list' %}" method="get">
-            <input type="hidden" name="display" value="supply">
-            <input class="btn btn-outline-success" type="submit" value="Полученные">
-          </form>
-          <form action="{% url 'bills:bill_list' %}" method="get">
-            <input type="hidden" name="display" value="all">
-            <input class="btn btn-outline-secondary ml-1" type="submit" value="Все заказы">
-          </form>
-          <form action="{% url 'bills:bill_list' %}" method="get">
-            <input class="btn btn-primary ml-1" type="submit" value="Ожидаем" accesskey="d">
-          </form>
-        </div>
-      </div>
-
-      <!-- Оглавление -->
-      <div class="col-5">
-        <div class="sticky-top py-1">
-          <h3 align="center">
-            Ожидаем поставку комплектующих
-          </h3>
-        </div>
-      </div>
-
-      <!-- Кнопка регистрации -->
-      {% if user.is_authenticated %}
-        <div class="d-flex col justify-content-end">
-
-          <!-- Кнопка "Выйти" -->
-          <!--
-          <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
-            <a href="{ % url 'logout' %}" class="btn btn-success ml-5">Выйти</a>
-          </div>
-          -->
-
-          <!-- Выпадающее меню -->
-          <ul class="navbar-nav pr-3">
-            <li class="nav-item dropleft">
-              <a class="nav-link dropdown-toggle pt-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{ user.last_name }}
-              </a>
-              <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                <!-- Дополнительная строчка в выпадающем меню -->
-<!--
-                <a class="dropdown-item" href="#">Action</a>
-                <div class="dropdown-divider"></div>
--->
-                <a class="dropdown-item" href="{% url 'logout' %}" >Выйти</a>
-              </div>
-             </li>
-          </ul>
-        </div>
-      {% else %}
-        <div class="d-flex col justify-content-end">
-          <div class="btn-group btn-group-toggle pt-2" data-toggle="buttons">
-            <a href="{% url 'login' %}" class="btn btn-success">  Вход  </a>
-          </div>
-        </div>
-      {% endif %}
-      <!-- Кнопка регистрации -->
-
-
-    </div>
-  </div>
